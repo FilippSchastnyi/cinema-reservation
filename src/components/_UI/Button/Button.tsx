@@ -1,10 +1,10 @@
 import classes from './Button.module.scss';
 
 type ButtonSize =
-  | 'btn--lg'
-  | 'btn--sm'
-  | 'btn--md'
-  | 'btn--w100';
+  | 'lg'
+  | 'sm'
+  | 'md'
+  | 'w100';
 
 type ButtonVariant =
     | 'default'
@@ -20,13 +20,13 @@ interface IButton {
 
 function Button({
   children,
-  size = 'btn--md',
+  size = 'md',
   variant = 'default',
   onClick,
   isDisabled = false,
 }: IButton): JSX.Element {
   const cls = [classes.btn];
-  cls.push(classes[size]);
+  cls.push(`btn--${classes[size]}`);
   cls.push(classes[variant]);
 
   return (
