@@ -3,7 +3,7 @@ import Button from './components/_UI/Button/Button';
 function App() {
   return (
     <Button
-      size="btn--sm"
+      size="sm"
       onClick={() => {
         console.log('Hello');
       }}

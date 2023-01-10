@@ -26,7 +26,7 @@ function Button({
   isDisabled = false,
 }: IButton): JSX.Element {
   const cls = [classes.btn];
-  cls.push(`btn--${classes[size]}`);
+  cls.push(classes[`btn--${size}`]);
   cls.push(classes[variant]);
 
   return (
