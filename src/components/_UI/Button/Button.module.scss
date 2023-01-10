@@ -7,10 +7,8 @@
   font-size: 24px;
   line-height: 29px;
   text-align: center;
-  font-weight: normal;
   white-space: nowrap;
   appearance: none;
-  cursor: pointer;
   background: $color-primary;
   color: $color-white;
 
@@ -19,11 +17,11 @@
   }
 
   &--lg {
-    width: 400px;
+    width: 240px;
   }
 
   &--md {
-    width: 280px;
+    width: 180px;
   }
 
   &--sm {
