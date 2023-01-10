@@ -1,8 +1,15 @@
-import './App.css';
+import Button from './components/_UI/Button/Button';
 
 function App() {
   return (
-    <div className="App" />
+    <Button
+      size="btn--sm"
+      onClick={() => {
+        console.log('Hello');
+      }}
+    >
+      <span>Hello</span>
+    </Button>
   );
 }
 
