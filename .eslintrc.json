@@ -26,6 +26,7 @@
         "react/react-in-jsx-scope": 0,
         "react/prop-types": "off",
         "react/require-default-props": "off",
-        "linebreak-style": 0
+        "linebreak-style": 0,
+        "arrowFunctions": 0
     }
 }

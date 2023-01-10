@@ -7,8 +7,8 @@ type ButtonSize =
   | 'w100';
 
 type ButtonVariant =
-    | 'default'
-    | 'link';
+  | 'default'
+  | 'link';
 
 interface IButton {
   onClick: () => void;
