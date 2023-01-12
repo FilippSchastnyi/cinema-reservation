@@ -10,7 +10,7 @@ interface IModal {
   closePopup: () => void;
 }
 
-function Modal({ isOpen = false, children, closePopup }: IModal): JSX.Element | null {
+const Modal = ({ isOpen = false, children, closePopup }: IModal): JSX.Element | null => {
   if (!isOpen) return null;
 
   return (
@@ -26,6 +26,6 @@ function Modal({ isOpen = false, children, closePopup }: IModal): JSX.Element | 
       </>
     </Portal>
   );
-}
+};
 
 export default Modal;
