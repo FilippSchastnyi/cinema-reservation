@@ -1,30 +1,44 @@
+import { MouseEventHandler } from 'react';
 import classes from './Button.module.scss';
 
-type ButtonSize =
-  | 'lg'
-  | 'sm'
-  | 'md'
-  | 'w100';
-
-type ButtonVariant =
-  | 'default'
-  | 'link';
-
-interface IButton {
-  onClick: () => void;
-  children?: JSX.Element;
-  size?: ButtonSize;
-  variant?: ButtonVariant
-  isDisabled?: boolean
+interface IButtonProps {
+  /**
+   * Function for clicking
+   */
+  onClick: MouseEventHandler<any> | undefined;
+  /**
+   * Children to be displayed in the button
+   */
+  children: string | JSX.Element;
+  /**
+   * The size of button to be used
+   * one of 'lg' | 'sm' | 'md | w100'
+   */
+  size?: | 'lg' | 'sm' | 'md' | 'w100';
+  /**
+   * The type of button to be used
+   * one of 'outlined' | 'text' | 'contained'
+   */
+  variant?: 'outlined' | 'text' | 'contained';
+  /**
+   * Checks if the button should be disabled
+   */
+  isDisabled?: boolean;
+  /**
+   * Determines if the spinner is to be shown or not.
+   * @type {boolean}
+   */
+  showSpinner?: boolean
 }
 
-function Button({
+const Button = ({
   children,
   size = 'md',
-  variant = 'default',
-  onClick,
+  variant = 'contained',
+  onClick = undefined,
+  showSpinner = false,
   isDisabled = false,
-}: IButton): JSX.Element {
+}: IButtonProps): JSX.Element => {
   const cls = [classes.btn];
   cls.push(classes[`btn--${size}`]);
   cls.push(classes[variant]);
@@ -36,9 +50,11 @@ function Button({
       disabled={isDisabled}
       onClick={onClick}
     >
+      {showSpinner && (<>loading...</>)}
+      {/* Spinner ::TODO */}
       {children}
     </button>
   );
-}
+};
 
 export default Button;

@@ -8,13 +8,13 @@ interface IInput {
   onBlur?: () => void
 }
 
-function Input({
+const Input = ({
   type,
   label,
   name,
   onChange,
   onBlur,
-}: IInput) {
+}: IInput) => {
   const idGen = Math.round(Math.random() * 1e8)
     .toString(16);
   const inputType = type || 'text';
@@ -31,6 +31,6 @@ function Input({
       <label htmlFor={`${inputType}-${idGen}`}>{label}</label>
     </div>
   );
-}
+};
 
 export default Input;

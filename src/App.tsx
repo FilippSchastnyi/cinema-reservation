@@ -1,30 +1,9 @@
-import Button from './components/_UI/Button/Button';
-import Modal from './components/_UI/Modal/Modal';
+import AppRoutes from './routes/AppRoutes';
 
-function App() {
-  return (
-    <>
-      <Modal isOpen closePopup={() => {}}>
-        <Button
-          size="sm"
-          onClick={() => {
-            console.log('Hello');
-          }}
-        >
-          <span>CLICK</span>
-        </Button>
-      </Modal>
-      <Button
-        size="sm"
-        onClick={() => {
-          console.log('Hello');
-        }}
-      >
-        <span>Hello</span>
-      </Button>
-    </>
-
-  );
-}
+const App = () => (
+  <AppRoutes
+    isAuthorized={false}
+  />
+);
 
 export default App;

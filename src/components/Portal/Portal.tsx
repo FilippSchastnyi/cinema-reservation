@@ -5,7 +5,7 @@ interface IPortal {
   children: ReactElement
 }
 
-function Portal({ children }: IPortal): ReactElement {
+const Portal = ({ children }: IPortal): ReactElement => {
   const [container] = useState(() => document.createElement('div'));
 
   useEffect(() => {
@@ -16,6 +16,6 @@ function Portal({ children }: IPortal): ReactElement {
   }, []);
 
   return ReactDOM.createPortal(children, container);
-}
+};
 
 export default Portal;
