@@ -39,6 +39,7 @@
                 "unnamedComponents": "arrow-function"
             }
         ],
-        "@typescript-eslint/no-explicit-any": ["off"]
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "arrow-body-style": 0
     }
 }
