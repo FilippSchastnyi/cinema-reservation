@@ -5,21 +5,20 @@ import Overlay from '../Overlay/Overlay';
 import Button from '../Button/Button';
 
 interface IModal {
-  isOpen?: boolean;
+  active?: boolean;
   children?: JSX.Element;
-  closePopup: () => void;
+  setActive: (b: boolean) => void;
 }
 
-const Modal = ({ isOpen = false, children, closePopup }: IModal): JSX.Element | null => {
-  if (!isOpen) return null;
-
+const Modal = ({ active, setActive, children }: IModal): JSX.Element | null => {
+  if (!active) return null;
   return (
     <Portal>
       <>
-        <Overlay onHandleOverlayClick={closePopup} />
+        <Overlay onHandleOverlayClick={() => setActive(false)} />
         <div className={classes.modal}>
           {children}
-          <Button onClick={closePopup}>
+          <Button onClick={() => setActive(false)}>
             <span>Close</span>
           </Button>
         </div>

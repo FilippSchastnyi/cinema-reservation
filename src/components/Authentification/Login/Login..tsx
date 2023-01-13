@@ -1,6 +1,5 @@
 const Login = () => (
-  <div />
-  /* Login - Pilip ::TODO */
+  <div>Login</div>
 );
 
 export default Login;

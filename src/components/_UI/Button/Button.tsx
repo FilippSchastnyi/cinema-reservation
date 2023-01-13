@@ -28,7 +28,7 @@ interface IButtonProps {
    * Determines if the spinner is to be shown or not.
    * @type {boolean}
    */
-  showSpinner?: boolean
+  showSpinner?: boolean;
 }
 
 const Button = ({
