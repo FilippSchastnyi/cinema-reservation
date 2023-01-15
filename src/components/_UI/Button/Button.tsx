@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import classes from './Button.module.scss';
+import ButtonCss from './Button.module.scss';
 
 interface IButtonProps {
   /**
@@ -39,9 +39,9 @@ const Button = ({
   showSpinner = false,
   isDisabled = false,
 }: IButtonProps): JSX.Element => {
-  const cls = [classes.btn];
-  cls.push(classes[`btn--${size}`]);
-  cls.push(classes[variant]);
+  const cls = [ButtonCss.btn];
+  cls.push(ButtonCss[`btn--${size}`]);
+  cls.push(ButtonCss[variant]);
 
   return (
     <button

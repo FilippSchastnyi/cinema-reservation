@@ -1,22 +1,21 @@
-import React from 'react';
-import classes from './Modal.module.scss';
-import Portal from '../../Portal/Portal';
-import Overlay from '../Overlay/Overlay';
-import Button from '../Button/Button';
+import Portal from '@components/Portal/Portal';
+import Overlay from '@ui/Overlay/Overlay';
+import Button from '@ui/Button/Button';
+import ModalCss from './Modal.module.scss';
 
-interface IModal {
+interface IModalProps {
   active?: boolean;
   children?: JSX.Element;
   setActive: (b: boolean) => void;
 }
 
-const Modal = ({ active, setActive, children }: IModal): JSX.Element | null => {
+const Modal = ({ active, setActive, children }: IModalProps): JSX.Element | null => {
   if (!active) return null;
   return (
     <Portal>
       <>
         <Overlay onHandleOverlayClick={() => setActive(false)} />
-        <div className={classes.modal}>
+        <div className={ModalCss.modal}>
           {children}
           <Button onClick={() => setActive(false)}>
             <span>Close</span>

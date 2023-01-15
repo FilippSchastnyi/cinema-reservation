@@ -1,6 +1,6 @@
-import classes from './Input.module.scss';
+import InputCss from './Input.module.scss';
 
-interface IInput {
+interface IInputProps {
   type?: string,
   label?: string,
   name?: string,
@@ -14,12 +14,12 @@ const Input = ({
   name,
   onChange,
   onBlur,
-}: IInput) => {
+}: IInputProps) => {
   const idGen = Math.round(Math.random() * 1e8)
     .toString(16);
   const inputType = type || 'text';
   return (
-    <div className={classes.input}>
+    <div className={InputCss.input}>
       <input
         type={inputType}
         id={`${inputType}-${idGen}`}

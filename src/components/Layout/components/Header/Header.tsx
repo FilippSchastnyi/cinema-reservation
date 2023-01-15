@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import classes from './Header.module.scss';
-import Button from '../../../_UI/Button/Button';
-import Logo from '../../../Logo/Logo';
-import Modal from '../../../_UI/Modal/Modal';
-import Login from '../../../Authentification/Login/Login.';
-import Registration from '../../../Authentification/Registration/Registration';
+import Registration from '@components/Authentification/Registration/Registration';
+import Button from '@ui/Button/Button';
+import Logo from '@components/Logo/Logo';
+import Modal from '@ui/Modal/Modal';
+import Login from '@components/Authentification/Login/Login.';
+import HeaderCss from './Header.module.scss';
 
 enum AuthVariant {
   None,
@@ -37,10 +37,10 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <header className={classes.header}>
-      <div className={classes.wrapper}>
+    <header className={HeaderCss.header}>
+      <div className={HeaderCss.wrapper}>
         <Logo />
-        <div className={classes.buttonGroup}>
+        <div className={HeaderCss.buttonGroup}>
           <Button size="sm" onClick={onHandleLoginClick(AuthVariant.LogIn)}>
             Log In
           </Button>

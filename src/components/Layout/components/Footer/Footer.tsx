@@ -1,7 +1,7 @@
-import classes from './Footer.module.scss';
+import FooterCss from './Footer.module.scss';
 
 const Footer = (): JSX.Element => (
-  <footer className={classes.footer}>
+  <footer className={FooterCss.footer}>
     {/* My name is footer and it's good place for your code ::TODO */}
   </footer>
 );
