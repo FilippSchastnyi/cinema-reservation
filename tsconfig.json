@@ -14,7 +14,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@ui/*": ["./src/components/_UI/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@css/*": ["./src/css/*"],
+      "@css-colors/*": ["./src/css/config/colors.scss"],
+      "@css-media/*": ["./src/css/mixins/media-queries.scss"],
+    },
   },
   "include": ["vite.config.ts", "src", ".eslintrc.json"],
   "references": [{ "path": "./tsconfig.node.json" }]
