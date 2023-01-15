@@ -3,7 +3,7 @@ import Registration from '@components/Authentification/Registration/Registration
 import Button from '@ui/Button/Button';
 import Logo from '@components/Logo/Logo';
 import Modal from '@ui/Modal/Modal';
-import Login from '@components/Authentification/Login/Login.';
+import Login from '@components/Authentification/Login/Login';
 import HeaderCss from './Header.module.scss';
 
 enum AuthVariant {
