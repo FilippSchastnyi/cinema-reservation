@@ -17,9 +17,9 @@ const Modal = ({ active, setActive, children }: IModalProps): JSX.Element | null
         <Overlay onHandleOverlayClick={() => setActive(false)} />
         <div className={ModalCss.modal}>
           {children}
-          <Button onClick={() => setActive(false)}>
+{/*           <Button onClick={() => setActive(false)}>
             <span>Close</span>
-          </Button>
+          </Button> */}
         </div>
       </>
     </Portal>

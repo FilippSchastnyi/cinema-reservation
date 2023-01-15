@@ -1,4 +1,4 @@
-@import './src/css/config/colors';
+@import '@css/config/colors';
 
 .header {
   background-color: $color-dark-blue;
@@ -12,6 +12,7 @@
 .wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 20px;
 }
 
