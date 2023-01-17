@@ -1,16 +1,11 @@
 import { useState } from 'react';
-import Registration from '@components/Authentification/Registration/Registration';
+import Registration from '@components/Auth/Registration/Registration';
 import Button from '@ui/Button/Button';
 import Logo from '@components/Logo/Logo';
 import Modal from '@ui/Modal/Modal';
-import Login from '@components/Authentification/Login/Login';
+import Login from '@components/Auth/Login/Login';
+import { AuthVariant } from '@src/ts/enums';
 import HeaderCss from './Header.module.scss';
-
-enum AuthVariant {
-  None,
-  LogIn,
-  SignUp,
-}
 
 const Header = (): JSX.Element => {
   const [modalActive, setModalActive] = useState<boolean>(false);
