@@ -1,11 +1,11 @@
-import { MouseEventHandler } from 'react';
+import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
 import ButtonCss from './Button.module.scss';
 
 interface IButtonProps {
   /**
    * Function for clicking
    */
-  onClick: MouseEventHandler<any> | undefined;
+  onClick?: MouseEventHandler<any> | undefined;
   /**
    * Children to be displayed in the button
    */
@@ -29,6 +29,10 @@ interface IButtonProps {
    * @type {boolean}
    */
   showSpinner?: boolean;
+  /**
+   * Determines the default behavior of the button
+   */
+  type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
 const Button = ({
@@ -38,6 +42,7 @@ const Button = ({
   onClick = undefined,
   showSpinner = false,
   isDisabled = false,
+  type = 'button',
 }: IButtonProps): JSX.Element => {
   const cls = [ButtonCss.btn];
   cls.push(ButtonCss[`btn--${size}`]);
@@ -45,7 +50,7 @@ const Button = ({
 
   return (
     <button
-      type="button"
+      type={type}
       className={cls.join(' ')}
       disabled={isDisabled}
       onClick={onClick}
