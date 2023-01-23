@@ -1,34 +1,33 @@
-import classes from './Input.module.scss';
+import InputCss from './Input.module.scss';
 
-interface IInput {
+interface IInputProps {
   type?: string,
   label?: string,
   name?: string,
-  onChange?: () => void,
-  onBlur?: () => void
+  register?: any,
+  errors?: any
 }
 
 const Input = ({
-  type,
-  label,
-  name,
-  onChange,
-  onBlur,
-}: IInput) => {
+  type = 'text',
+  label = '',
+  name = '',
+  register,
+  errors,
+}: IInputProps) => {
   const idGen = Math.round(Math.random() * 1e8)
     .toString(16);
-  const inputType = type || 'text';
+  const inputType = type;
   return (
-    <div className={classes.input}>
+    <div className={InputCss.Input}>
       <input
+        name={name}
+        {...register}
         type={inputType}
         id={`${inputType}-${idGen}`}
-        name={name}
-        onChange={onChange}
-        onChangeCapture={onBlur}
-        required
       />
       <label htmlFor={`${inputType}-${idGen}`}>{label}</label>
+      <p className={InputCss.inputError}>{errors[name]?.message}</p>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import classes from './Flyout.module.scss';
-import Portal from '../../Portal/Portal';
-import Overlay from '../Overlay/Overlay';
-import Button from '../Button/Button';
+import Portal from '@components/Portal/Portal';
+import Overlay from '@ui/Overlay/Overlay';
+import Button from '@ui/Button/Button';
+import FlyoutCss from './Flyout.module.scss';
 
 const Flyout = ({ isOpen, closeFlyout }: any): any => {
   if (!isOpen) return null;
@@ -9,7 +9,7 @@ const Flyout = ({ isOpen, closeFlyout }: any): any => {
     <Portal>
       <>
         <Overlay onHandleOverlayClick={closeFlyout} />
-        <div className={classes.flyout}>
+        <div className={FlyoutCss.flyout}>
           <Button onClick={closeFlyout}>
             X
           </Button>

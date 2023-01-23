@@ -1,8 +1,8 @@
-import classes from './Logo.module.scss';
+import LogoCss from './Logo.module.scss';
 
 const Logo = () => {
   return (
-    <div className={classes.logo}>
+    <div className={LogoCss.logo}>
       CinemaReservation
     </div>
   );
