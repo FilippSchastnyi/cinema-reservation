@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Registration from '@components/Auth/Registration/Registration';
+import Registration from '@components/Auth/Registration';
 import Button from '@ui/Button/Button';
 import Logo from '@components/Logo/Logo';
 import Modal from '@ui/Modal/Modal';
-import Login from '@components/Auth/Login/Login';
+import Login from '@components/Auth/Login';
 import { AuthVariant } from '@src/ts/enums';
 import HeaderCss from './Header.module.scss';
 
@@ -18,14 +18,22 @@ const Header = (): JSX.Element => {
     };
   };
 
+  const onHandleAuthMethodChange = (variant: AuthVariant) => {
+    return () => {
+      setAuthPopupState(variant);
+    };
+  };
+
   const renderAuthModal = (authPopupVariant: AuthVariant): JSX.Element | null => {
     switch (authPopupVariant) {
       case AuthVariant.None:
         return null;
       case AuthVariant.LogIn:
-        return <Login />;
+        return <Login changeAuthMethod={onHandleAuthMethodChange(AuthVariant.SignUp)} />;
       case AuthVariant.SignUp:
-        return <Registration />;
+        return (
+          <Registration changeAuthMethod={onHandleAuthMethodChange(AuthVariant.LogIn)} />
+        );
       default:
         return null;
     }

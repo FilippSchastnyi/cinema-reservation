@@ -1,11 +1,15 @@
 import Input from '@ui/Input/Input';
 import { useFormContext } from 'react-hook-form';
+import FormControlsCss from './FormControls.module.scss';
 
 const LoginFormControls = () => {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
   return (
     <>
-      <div className="form-control">
+      <div className={FormControlsCss.FormControl}>
         <Input
           label="Email"
           name="email"
@@ -13,12 +17,14 @@ const LoginFormControls = () => {
           errors={errors}
         />
       </div>
-      <Input
-        label="Password"
-        name="password"
-        register={register('password')}
-        errors={errors}
-      />
+      <div className={FormControlsCss.FormControl}>
+        <Input
+          label="Password"
+          name="password"
+          register={register('password')}
+          errors={errors}
+        />
+      </div>
     </>
   );
 };

@@ -42,7 +42,7 @@ const AuthForm = ({ variant }: IAuthFormProps) => {
       <form onSubmit={methods.handleSubmit((data) => { onHandleSubmitForm(data, variant); })}>
         {variant === AuthVariant.LogIn && <LoginFormControls />}
         {variant === AuthVariant.SignUp && <RegistrationFormControls />}
-        <Button size="sm" type="submit">
+        <Button size="w100" type="submit">
           {variant === AuthVariant.SignUp ? ('Register') : ('Log In')}
         </Button>
       </form>
