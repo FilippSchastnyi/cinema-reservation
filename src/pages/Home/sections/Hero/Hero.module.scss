@@ -1,0 +1,18 @@
+@import "@css/mixins/media-queries.scss";
+
+.hero {
+  min-height: 100vh;
+}
+
+.backGround {
+  margin-top: 55px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  @include tablet-and-mobile{
+    margin-top: 55px;
+  }
+}
