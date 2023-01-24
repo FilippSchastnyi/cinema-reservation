@@ -13,7 +13,6 @@ const AppRoutes = (isAuthorized: IAppRoutesProps): JSX.Element => (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route index element={<Home />} />
         </Route>
       </Routes>
     )

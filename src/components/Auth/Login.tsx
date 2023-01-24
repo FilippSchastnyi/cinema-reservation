@@ -1,10 +1,11 @@
 import Image from '@components/Image/Image';
-import logInBgImg from '@assets/auth/login-bg.jpg';
-import logInBgImgX2 from '@assets/auth/login-bg@2x.jpg';
+import logInBgImg from '@assets/images/auth/login-bg.jpg';
+import logInBgImgX2 from '@assets/images/auth/login-bg@2x.jpg';
 import AuthForm from '@components/Auth/AuthForm/AuthForm';
 import { AuthVariant } from '@src/ts/enums';
 import Button from '@ui/Button/Button';
 import AuthCss from './Auth.module.scss';
+import '@css/common/text.scss';
 
 const Login = ({ changeAuthMethod }: { changeAuthMethod: any }) => (
   <div className={AuthCss.authContainer}>
@@ -19,7 +20,7 @@ const Login = ({ changeAuthMethod }: { changeAuthMethod: any }) => (
       <h2 className={AuthCss.title}>Log In</h2>
       <AuthForm variant={AuthVariant.LogIn} />
       <div className={AuthCss.confirmation}>
-        <span> Don't have an account? </span>
+        <span className="text"> Don't have an account? </span>
         <Button size="sm" onClick={changeAuthMethod}> Sign Up </Button>
       </div>
     </div>

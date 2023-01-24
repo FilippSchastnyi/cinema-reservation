@@ -1,7 +1,10 @@
+import Hero from '@pages/Home/sections/Hero/Hero';
+import Marquee from '@components/Marquee/Marquee';
+
 const Home = (): JSX.Element => (
   <>
-    Home page
-    {/*       Home, sweet home... mmmmm, need work... ::TODO */}
+    <Hero />
+    <Marquee />
   </>
 );
 
