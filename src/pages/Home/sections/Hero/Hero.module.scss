@@ -12,6 +12,7 @@
   right: 0;
   bottom: 0;
   z-index: 1;
+  overflow: hidden;
   @include tablet-and-mobile{
     margin-top: 55px;
   }

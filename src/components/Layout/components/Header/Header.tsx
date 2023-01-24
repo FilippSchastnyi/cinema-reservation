@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Registration from '@components/Auth/Registration';
 import Button from '@ui/Button/Button';
 import Logo from '@components/Logo/Logo';
