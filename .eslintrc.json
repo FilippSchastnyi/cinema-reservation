@@ -44,6 +44,7 @@
         "@typescript-eslint/no-explicit-any": ["off"],
         "arrow-body-style": 0,
         "import/prefer-default-export": "off",
-        "react/button-has-type": "off"
+        "react/button-has-type": "off",
+        "react/display-name": "off"
     }
 }

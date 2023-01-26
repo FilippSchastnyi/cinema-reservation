@@ -8,6 +8,9 @@ import FormValidationService from '@src/ts/services/FormValidationService';
 import Button from '@ui/Button/Button';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER, LOGIN_USER } from '@src/graphQL/mutations/user';
+import { useContext } from 'react';
+import { AuthContext } from '@src/contexts/AuthContext';
+import { UserType } from '@src/ts/types';
 
 interface IAuthFormProps {
   variant: AuthVariant.SignUp | AuthVariant.LogIn
@@ -16,6 +19,7 @@ interface IAuthFormProps {
 const AuthForm = ({ variant }: IAuthFormProps) => {
   const [signUpUser] = useMutation(CREATE_USER);
   const [logInUser] = useMutation(LOGIN_USER);
+  const authContext = useContext(AuthContext);
 
   const methods = useForm({
     mode: 'onChange',
@@ -31,8 +35,9 @@ const AuthForm = ({ variant }: IAuthFormProps) => {
         },
       },
     })
-      .then((data) => {
-        console.log(data);
+      .then((response) => {
+        const userData = response.data.loginUser as UserType;
+        authContext.login(userData);
       });
     methods.reset();
   };

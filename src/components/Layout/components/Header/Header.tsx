@@ -1,26 +1,33 @@
-import { useContext, useState } from 'react';
-import Registration from '@components/Auth/Registration';
+import { useContext, useEffect, useReducer } from 'react';
 import Button from '@ui/Button/Button';
 import Logo from '@components/Logo/Logo';
 import Modal from '@ui/Modal/Modal';
 import Login from '@components/Auth/Login';
 import { AuthVariant } from '@src/ts/enums';
+import { AuthContext } from '@src/contexts/AuthContext';
+import { authModalReducer, authModalState } from '@src/reducers/AuthModalReducer';
+import Registration from '@components/Auth/Registration';
 import HeaderCss from './Header.module.scss';
 
 const Header = (): JSX.Element => {
-  const [modalActive, setModalActive] = useState<boolean>(false);
-  const [authPopupState, setAuthPopupState] = useState(AuthVariant.None);
-
-  const onHandleLoginClick = (authPopupVariant: AuthVariant) => {
-    return () => {
-      setModalActive(!modalActive);
-      setAuthPopupState(authPopupVariant);
-    };
-  };
+  const authContext = useContext(AuthContext);
+  const [state, dispatch] = useReducer(authModalReducer, authModalState);
+  useEffect(() => {
+    console.log(state.isModalActive);
+    dispatch({
+      type: state.authPopupVariant,
+    });
+  }, [state.isModalActive, state.authPopupVariant]);
 
   const onHandleAuthMethodChange = (variant: AuthVariant) => {
     return () => {
-      setAuthPopupState(variant);
+      if (variant !== AuthVariant.LogOut) {
+        dispatch({
+          type: variant,
+        });
+      } else if (variant === AuthVariant.LogOut) {
+        authContext.logout();
+      }
     };
   };
 
@@ -31,9 +38,7 @@ const Header = (): JSX.Element => {
       case AuthVariant.LogIn:
         return <Login changeAuthMethod={onHandleAuthMethodChange(AuthVariant.SignUp)} />;
       case AuthVariant.SignUp:
-        return (
-          <Registration changeAuthMethod={onHandleAuthMethodChange(AuthVariant.LogIn)} />
-        );
+        return <Registration changeAuthMethod={onHandleAuthMethodChange(AuthVariant.LogIn)} />;
       default:
         return null;
     }
@@ -44,20 +49,33 @@ const Header = (): JSX.Element => {
       <div className={HeaderCss.wrapper}>
         <Logo />
         <div className={HeaderCss.buttonGroup}>
-          <Button size="sm" onClick={onHandleLoginClick(AuthVariant.LogIn)}>
-            Log In
-          </Button>
-          <Button size="sm" onClick={onHandleLoginClick(AuthVariant.SignUp)}>
-            Sign Up
-          </Button>
+          {
+            authContext.user?.email
+              ? (
+                <Button size="sm" onClick={onHandleAuthMethodChange(AuthVariant.LogOut)}>
+                  Log Out
+                </Button>
+              )
+              : (
+                <>
+                  <Button size="sm" onClick={onHandleAuthMethodChange(AuthVariant.LogIn)}>
+                    Log In
+                  </Button>
+                  <Button size="sm" onClick={onHandleAuthMethodChange(AuthVariant.SignUp)}>
+                    Sign Up
+                  </Button>
+                </>
+              )
+          }
+
         </div>
       </div>
       <Modal
-        active={modalActive}
-        setActive={setModalActive}
+        active={state.isModalActive}
+        closeModal={onHandleAuthMethodChange(AuthVariant.None)}
       >
         <>
-          {renderAuthModal(authPopupState)}
+          {renderAuthModal(state.authPopupVariant)}
         </>
       </Modal>
     </header>
