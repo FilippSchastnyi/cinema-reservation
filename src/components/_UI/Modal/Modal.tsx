@@ -6,15 +6,15 @@ import ModalCss from './Modal.module.scss';
 interface IModalProps {
   active?: boolean;
   children?: JSX.Element;
-  setActive: (b: boolean) => void;
+  closeModal: (b: boolean) => void;
 }
 
-const Modal = ({ active, setActive, children }: IModalProps): JSX.Element | null => {
+const Modal = ({ active, closeModal, children }: IModalProps): JSX.Element | null => {
   if (!active) return null;
   return (
     <Portal>
       <>
-        <Overlay onHandleOverlayClick={() => setActive(false)} />
+        <Overlay onHandleOverlayClick={closeModal} />
         <div className={ModalCss.modal}>
           {children}
 {/*           <Button onClick={() => setActive(false)}>

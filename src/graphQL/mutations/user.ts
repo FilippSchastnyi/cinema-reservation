@@ -9,6 +9,7 @@ export const CREATE_USER = gql(`
             email
             user_id
             roles
+            access_token
       }
       ... on AccessDenied {
         message
@@ -26,6 +27,7 @@ export const LOGIN_USER = gql(`
             email
             user_id
             roles
+            access_token
       }
       ... on AccessDenied {
             message

@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import InputCss from './Input.module.scss';
 
 interface IInputProps {
@@ -15,8 +16,7 @@ const Input = ({
   register,
   errors,
 }: IInputProps) => {
-  const idGen = Math.round(Math.random() * 1e8)
-    .toString(16);
+  const idGen = useId();
   const inputType = type;
   return (
     <div className={InputCss.Input}>

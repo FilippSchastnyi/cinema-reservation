@@ -15,7 +15,7 @@ const HeroSlider = (): JSX.Element => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 20000,
+    autoplaySpeed: 5000,
     pauseOnHover: true,
     fade: true,
     infinite: true,
