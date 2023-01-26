@@ -1,13 +1,13 @@
-import { AuthContext, authContext } from '@src/contexts/AuthContext';
+import { AuthProvider } from '@src/contexts/AuthContext';
 import AppRoutes from './routes/AppRoutes';
 import './css/_index.scss';
 
 const App = () => (
-  <AuthContext.Provider value={authContext}>
+  <AuthProvider>
     <AppRoutes
       isAuthorized={false}
     />
-  </AuthContext.Provider>
+  </AuthProvider>
 );
 
 export default App;

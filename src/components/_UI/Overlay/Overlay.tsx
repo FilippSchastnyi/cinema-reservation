@@ -1,13 +1,15 @@
 import React, { ReactElement } from 'react';
 import OverlayCss from './Overlay.module.scss';
 
-const Overlay = ({ onHandleOverlayClick }: { onHandleOverlayClick: () => void }): ReactElement => (
+interface IOverlayProps {
+  onHandleOverlayClick: any | undefined
+}
+
+const Overlay = ({ onHandleOverlayClick }:IOverlayProps): ReactElement => (
   <div
     aria-hidden
     className={OverlayCss.overlay}
-    onClick={() => {
-      onHandleOverlayClick();
-    }}
+    onClick={onHandleOverlayClick}
   />
 );
 

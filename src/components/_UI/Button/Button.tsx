@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 import ButtonCss from './Button.module.scss';
 
 interface IButtonProps {
