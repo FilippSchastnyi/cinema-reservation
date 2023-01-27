@@ -1,0 +1,31 @@
+@import "@css/config/colors.scss";
+
+.Card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    background: $color-white;
+}
+
+.Text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px 16px 18px;
+}
+
+.Title {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.18;
+    margin-bottom: 4px;
+}
+
+.Genres {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.18;
+    color: $color-grey-80;
+}
