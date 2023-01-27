@@ -7,7 +7,10 @@ import Button from '@ui/Button/Button';
 import AuthCss from './Auth.module.scss';
 import '@css/common/text.scss';
 
-const Login = ({ changeAuthMethod }: { changeAuthMethod: any }) => (
+const Login = ({
+  changeAuthMethod,
+  completeAuthMethod,
+}: { changeAuthMethod: any, completeAuthMethod: any }) => (
   <div className={AuthCss.authContainer}>
     <div className={AuthCss.imageContainer}>
       <Image
@@ -18,7 +21,7 @@ const Login = ({ changeAuthMethod }: { changeAuthMethod: any }) => (
     </div>
     <div className={AuthCss.content}>
       <h2 className={AuthCss.title}>Log In</h2>
-      <AuthForm variant={AuthVariant.LogIn} />
+      <AuthForm variant={AuthVariant.LogIn} completeAuthMethod={completeAuthMethod} />
       <div className={AuthCss.confirmation}>
         <span className="text"> Don't have an account? </span>
         <Button size="sm" onClick={changeAuthMethod}> Sign Up </Button>

@@ -6,11 +6,14 @@ import { AuthVariant } from '@src/ts/enums';
 import Button from '@ui/Button/Button';
 import AuthCss from './Auth.module.scss';
 
-const Registration = ({ changeAuthMethod }: { changeAuthMethod: any }) => (
+const Registration = ({
+  changeAuthMethod,
+  completeAuthMethod,
+}: { changeAuthMethod: any, completeAuthMethod: any }) => (
   <div className={AuthCss.authContainer}>
     <div className={AuthCss.content}>
       <h2 className={AuthCss.title}>Registration</h2>
-      <AuthForm variant={AuthVariant.SignUp} />
+      <AuthForm variant={AuthVariant.SignUp} completeAuthMethod={completeAuthMethod} />
       <div className={AuthCss.confirmation}>
         <span className="text"> Already have an account? </span>
         <Button size="sm" onClick={changeAuthMethod}> Log In </Button>
