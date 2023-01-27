@@ -13,10 +13,11 @@ import { AuthContext } from '@src/contexts/AuthContext';
 import { UserType } from '@src/ts/types';
 
 interface IAuthFormProps {
-  variant: AuthVariant.SignUp | AuthVariant.LogIn
+  variant: AuthVariant.SignUp | AuthVariant.LogIn,
+  completeAuthMethod: any
 }
 
-const AuthForm = ({ variant }: IAuthFormProps) => {
+const AuthForm = ({ variant, completeAuthMethod }: IAuthFormProps) => {
   const [signUpUser] = useMutation(CREATE_USER);
   const [logInUser] = useMutation(LOGIN_USER);
   const authContext = useContext(AuthContext);
@@ -38,6 +39,7 @@ const AuthForm = ({ variant }: IAuthFormProps) => {
       .then((response) => {
         const userData = response.data.loginUser as UserType;
         authContext.login(userData);
+        completeAuthMethod();
       });
     methods.reset();
   };

@@ -1,5 +1,4 @@
-import { useContext, useEffect, useReducer } from 'react';
-import Button from '@ui/Button/Button';
+import { useContext, useReducer } from 'react';
 import Logo from '@components/Logo/Logo';
 import Modal from '@ui/Modal/Modal';
 import Login from '@components/Auth/Login';
@@ -7,27 +6,21 @@ import { AuthVariant } from '@src/ts/enums';
 import { AuthContext } from '@src/contexts/AuthContext';
 import { authModalReducer, authModalState } from '@src/reducers/AuthModalReducer';
 import Registration from '@components/Auth/Registration';
+import HeaderActionGroup from '@components/HeaderActionGroup/HeaderActionGroup';
 import HeaderCss from './Header.module.scss';
 
 const Header = (): JSX.Element => {
   const authContext = useContext(AuthContext);
   const [state, dispatch] = useReducer(authModalReducer, authModalState);
-  useEffect(() => {
-    console.log(state.isModalActive);
-    dispatch({
-      type: state.authPopupVariant,
-    });
-  }, [state.isModalActive, state.authPopupVariant]);
 
   const onHandleAuthMethodChange = (variant: AuthVariant) => {
     return () => {
-      if (variant !== AuthVariant.LogOut) {
-        dispatch({
-          type: variant,
-        });
-      } else if (variant === AuthVariant.LogOut) {
+      if (variant === AuthVariant.LogOut) {
         authContext.logout();
       }
+      dispatch({
+        type: variant,
+      });
     };
   };
 
@@ -36,9 +29,19 @@ const Header = (): JSX.Element => {
       case AuthVariant.None:
         return null;
       case AuthVariant.LogIn:
-        return <Login changeAuthMethod={onHandleAuthMethodChange(AuthVariant.SignUp)} />;
+        return (
+          <Login
+            changeAuthMethod={onHandleAuthMethodChange(AuthVariant.SignUp)}
+            completeAuthMethod={onHandleAuthMethodChange(AuthVariant.None)}
+          />
+        );
       case AuthVariant.SignUp:
-        return <Registration changeAuthMethod={onHandleAuthMethodChange(AuthVariant.LogIn)} />;
+        return (
+          <Registration
+            changeAuthMethod={onHandleAuthMethodChange(AuthVariant.LogIn)}
+            completeAuthMethod={onHandleAuthMethodChange(AuthVariant.None)}
+          />
+        );
       default:
         return null;
     }
@@ -48,27 +51,7 @@ const Header = (): JSX.Element => {
     <header className={HeaderCss.header}>
       <div className={HeaderCss.wrapper}>
         <Logo />
-        <div className={HeaderCss.buttonGroup}>
-          {
-            authContext.user?.email
-              ? (
-                <Button size="sm" onClick={onHandleAuthMethodChange(AuthVariant.LogOut)}>
-                  Log Out
-                </Button>
-              )
-              : (
-                <>
-                  <Button size="sm" onClick={onHandleAuthMethodChange(AuthVariant.LogIn)}>
-                    Log In
-                  </Button>
-                  <Button size="sm" onClick={onHandleAuthMethodChange(AuthVariant.SignUp)}>
-                    Sign Up
-                  </Button>
-                </>
-              )
-          }
-
-        </div>
+        <HeaderActionGroup callAuthMethod={onHandleAuthMethodChange} />
       </div>
       <Modal
         active={state.isModalActive}
