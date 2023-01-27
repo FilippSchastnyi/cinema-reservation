@@ -1,19 +1,18 @@
 import Image from '@components/Image/Image';
+import { IMovieCard } from '@src/ts/interfaces';
 import MovieCardStyles from './MovieCard.module.scss';
 
-interface IMovieCardProps {
-  image: string;
-  name: string;
-  genres: string[];
-}
-
-const MovieCard = ({ image, name, genres }: IMovieCardProps) => {
+const MovieCard = ({
+  id, image, name, genres,
+}: IMovieCard) => {
   return (
-    <a className={MovieCardStyles.Card} href="/">
+    <a className={MovieCardStyles.Card} href={`/afisha/${id}`}>
       <Image src={image} />
       <div className={MovieCardStyles.Text}>
         <div className={MovieCardStyles.Title}>{name}</div>
-        <div className={MovieCardStyles.Genres}>{genres.map((genre) => `${genre} `)}</div>
+        <div className={MovieCardStyles.Genres}>
+          {genres.map((genre) => `${genre} `)}
+        </div>
       </div>
     </a>
   );
