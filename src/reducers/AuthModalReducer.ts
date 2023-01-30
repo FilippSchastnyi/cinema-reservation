@@ -1,17 +1,22 @@
 import { Reducer } from 'react';
 import { AuthVariant } from '@src/ts/enums';
 
-type AuthModalType = {
-  isModalActive: boolean,
-  authPopupVariant: AuthVariant
+type AuthModalState = {
+  isModalActive: boolean;
+  authPopupVariant: AuthVariant;
 };
 
-const authModalState: AuthModalType = {
+type AuthModalAction = { type: AuthVariant };
+
+const initialState: AuthModalState = {
   isModalActive: false,
   authPopupVariant: AuthVariant.LogOut,
 };
 
-const authModalReducer: Reducer<AuthModalType, any> = (state, action: { type: AuthVariant }) => {
+const authModalReducer: Reducer<AuthModalState, AuthModalAction> = (
+  state = initialState,
+  action,
+) => {
   switch (action.type) {
     case AuthVariant.None:
       return { ...state, isModalActive: false, authPopupVariant: AuthVariant.None };
@@ -19,8 +24,9 @@ const authModalReducer: Reducer<AuthModalType, any> = (state, action: { type: Au
       return { ...state, isModalActive: true, authPopupVariant: AuthVariant.LogIn };
     case AuthVariant.SignUp:
       return { ...state, isModalActive: true, authPopupVariant: AuthVariant.SignUp };
-    default: return state;
+    default:
+      return state;
   }
 };
 
-export { authModalReducer, authModalState };
+export { authModalReducer, initialState };
