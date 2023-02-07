@@ -18,7 +18,7 @@ interface IAuthFormProps {
 }
 
 const AuthForm = ({ variant, completeAuthMethod }: IAuthFormProps) => {
-  const [signUpUser] = useMutation(CREATE_USER);
+  const [createUser] = useMutation(CREATE_USER);
   const [logInUser] = useMutation(LOGIN_USER);
   const authContext = useContext(AuthContext);
 
@@ -28,7 +28,8 @@ const AuthForm = ({ variant, completeAuthMethod }: IAuthFormProps) => {
   });
 
   const onHandleSubmitForm = (formData: any, actionType: AuthVariant) => {
-    (actionType === AuthVariant.LogIn ? logInUser : signUpUser)({
+    const actionVariant = (actionType === AuthVariant.LogIn) ? 'logInUser' : 'createUser';
+    (actionVariant === 'logInUser' ? logInUser : createUser)({
       variables: {
         input: {
           email: formData.email,
@@ -36,8 +37,8 @@ const AuthForm = ({ variant, completeAuthMethod }: IAuthFormProps) => {
         },
       },
     })
-      .then((response) => {
-        const userData = response.data.loginUser as UserType;
+      .then(({ data }) => {
+        const userData = data[actionVariant] as UserType;
         authContext.login(userData);
         completeAuthMethod();
       });
