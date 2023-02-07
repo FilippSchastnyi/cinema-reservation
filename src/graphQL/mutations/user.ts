@@ -1,17 +1,19 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_USER = gql(`
-  mutation createUser($input: UserInput){
+  mutation CreateUser($input: UserInput) {
     createUser(input: $input) {
-      __typename
       ... on UserData {
-            message
-            email
-            user_id
-            roles
-            access_token
+        email
+        user_id
+        message
+        roles
+        access_token
       }
-      ... on AccessDenied {
+      ... on UnexpectedError {
+        message
+      }
+      ... on AccessError {
         message
       }
     }
@@ -19,8 +21,8 @@ export const CREATE_USER = gql(`
 `);
 
 export const LOGIN_USER = gql(`
-  mutation loginUser($input: UserInput){
-    loginUser(input: $input) {
+  mutation logInUser($input: UserInput){
+    logInUser(input: $input) {
       __typename
       ... on UserData {
             message
@@ -29,7 +31,7 @@ export const LOGIN_USER = gql(`
             roles
             access_token
       }
-      ... on AccessDenied {
+      ... on AccessError {
             message
       }
     }
