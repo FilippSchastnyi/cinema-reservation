@@ -1,6 +1,7 @@
-import { createContext, useMemo, useReducer } from 'react';
+import { createContext, useMemo } from 'react';
 import { UserType } from '@src/ts/types';
-import { authReducer, authState } from '@src/reducers/AuthReducer';
+import { useTypedDispatch, useTypedSelector } from '@src/hooks/redux';
+import { userSlice } from '@src/store/reducers/userSlice';
 
 type AuthContextType = {
   user: UserType | null;
@@ -10,30 +11,27 @@ type AuthContextType = {
 
 const authContext: AuthContextType = {
   user: null,
-  login: (userData) => {},
+  login: (data) => {},
   logout: () => {},
 };
 
 const AuthContext = createContext(authContext);
 
 const AuthProvider = ({ children }: { children: JSX.Element }): JSX.Element => {
-  const [state, dispatch] = useReducer(authReducer, authState);
+  const user = useTypedSelector((state) => state.user);
+  const { logOutUser, logInUser } = userSlice.actions;
+  const dispatch = useTypedDispatch();
 
-  authContext.login = (userData) => {
-    localStorage.setItem('token', userData.access_token);
-    dispatch({
-      type: 'LOGIN',
-      payload: userData,
-    });
+  authContext.login = (data) => {
+    localStorage.setItem('token', data.access_token);
+    dispatch(logInUser(data));
   };
 
   authContext.logout = () => {
     localStorage.removeItem('token');
-    dispatch({
-      type: 'LOGOUT',
-    });
+    dispatch(logOutUser());
   };
-  const value = useMemo(() => ({ ...authContext, user: state.user }), [state.user]);
+  const value = useMemo(() => ({ ...authContext, user: user.data }), [user.data]);
   return (
     <AuthContext.Provider value={value}>
       {children}

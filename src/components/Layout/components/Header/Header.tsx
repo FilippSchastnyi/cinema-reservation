@@ -4,14 +4,14 @@ import Modal from '@ui/Modal/Modal';
 import Login from '@components/Auth/Login';
 import { AuthVariant } from '@src/ts/enums';
 import { AuthContext } from '@src/contexts/AuthContext';
-import { authModalReducer, authModalState } from '@src/reducers/AuthModalReducer';
+import { authModalReducer, initialState } from '@src/reducers/AuthModalReducer';
 import Registration from '@components/Auth/Registration';
 import HeaderActionGroup from '@components/HeaderActionGroup/HeaderActionGroup';
 import HeaderCss from './Header.module.scss';
 
 const Header = (): JSX.Element => {
   const authContext = useContext(AuthContext);
-  const [state, dispatch] = useReducer(authModalReducer, authModalState);
+  const [state, dispatch] = useReducer(authModalReducer, initialState);
 
   const onHandleAuthMethodChange = (variant: AuthVariant) => {
     return () => {

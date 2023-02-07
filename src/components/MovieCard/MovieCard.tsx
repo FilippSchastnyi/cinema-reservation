@@ -1,20 +1,25 @@
-import Image from '@components/Image/Image';
 import { IMovieCard } from '@src/ts/interfaces';
-import MovieCardStyles from './MovieCard.module.scss';
+import { Link } from 'react-router-dom';
+import MovieCardCss from './MovieCard.module.scss';
 
 const MovieCard = ({
   id, image, name, genres,
 }: IMovieCard) => {
   return (
-    <a className={MovieCardStyles.Card} href={`/afisha/${id}`}>
-      <Image src={image} />
-      <div className={MovieCardStyles.Text}>
-        <div className={MovieCardStyles.Title}>{name}</div>
-        <div className={MovieCardStyles.Genres}>
-          {genres.map((genre) => `${genre} `)}
-        </div>
+    <Link to={`/afisha/${id}`} className={MovieCardCss.card} key={id}>
+      <div className={MovieCardCss.top}>
+        <img src={image} alt="movie" />
       </div>
-    </a>
+      <div className={MovieCardCss.bottom}>
+        <p className="text text--bold">
+          {name}
+        </p>
+        <p className={MovieCardCss.group}>
+          <span className="text">{genres}</span>
+         { /* stars / rating  */}
+        </p>
+      </div>
+    </Link>
   );
 };
 

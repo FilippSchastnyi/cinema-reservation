@@ -1,10 +1,11 @@
 import {
-  ApolloClient, createHttpLink, InMemoryCache,
+  ApolloClient, concat, InMemoryCache,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import { createUploadLink } from 'apollo-upload-client';
 
-const httpLink = createHttpLink({
+const uploadLink = createUploadLink({
   uri: 'http://localhost:5000/graphql',
 });
 
@@ -26,7 +27,6 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
+  link: concat(uploadLink, authLink),
 });
-
 export default client;
