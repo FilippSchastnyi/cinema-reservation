@@ -5,6 +5,13 @@ export type UserType = {
   access_token: string;
 };
 
+export type FilmCardType = {
+  id: string;
+  name: string;
+  genres: Array<string>;
+  image: string;
+};
+
 export type FilmType = {
   id: string;
   name: string;
