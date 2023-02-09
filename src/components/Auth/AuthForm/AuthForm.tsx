@@ -28,8 +28,10 @@ const AuthForm = ({ variant, completeAuthMethod }: IAuthFormProps) => {
   });
 
   const onHandleSubmitForm = (formData: any, actionType: AuthVariant) => {
-    const actionVariant = (actionType === AuthVariant.LogIn) ? 'logInUser' : 'createUser';
-    (actionVariant === 'logInUser' ? logInUser : createUser)({
+    ((actionType === AuthVariant.LogIn)
+      ? logInUser
+      : createUser
+    )({
       variables: {
         input: {
           email: formData.email,
@@ -38,7 +40,7 @@ const AuthForm = ({ variant, completeAuthMethod }: IAuthFormProps) => {
       },
     })
       .then(({ data }) => {
-        const userData = data[actionVariant] as UserType;
+        const { userData } = data;
         authContext.login(userData);
         completeAuthMethod();
       });

@@ -1,10 +1,10 @@
-import { IMovieCard } from '@src/ts/interfaces';
 import { Link } from 'react-router-dom';
+import { FilmCardType } from '@src/ts/types';
 import MovieCardCss from './MovieCard.module.scss';
 
 const MovieCard = ({
   id, image, name, genres,
-}: IMovieCard) => {
+}: FilmCardType) => {
   return (
     <Link to={`/afisha/${id}`} className={MovieCardCss.card} key={id}>
       <div className={MovieCardCss.top}>
@@ -16,7 +16,7 @@ const MovieCard = ({
         </p>
         <p className={MovieCardCss.group}>
           <span className="text">{genres}</span>
-         { /* stars / rating  */}
+          { /* stars / rating  */}
         </p>
       </div>
     </Link>
