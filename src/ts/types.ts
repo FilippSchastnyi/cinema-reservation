@@ -1,3 +1,5 @@
+import { CinemaVariant } from '@src/ts/enums';
+
 export type UserType = {
   roles: string[];
   user_id: string;
@@ -10,6 +12,11 @@ export type FilmCardType = {
   name: string;
   genres: Array<string>;
   image: string;
+};
+
+export type CinemaOptionType = {
+  value: CinemaVariant;
+  label: string
 };
 
 export type FilmType = {
