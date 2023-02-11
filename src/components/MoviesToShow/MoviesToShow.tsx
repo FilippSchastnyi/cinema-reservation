@@ -1,6 +1,6 @@
-import MovieCard from '@components/MovieCard/MovieCard';
-import { CinemaVariant } from '@src/ts/enums';
-import MoviesToShowCss from './MoviesToShow.module.scss';
+import MovieCard from '@components/MovieCard/MovieCard'
+import { CinemaVariant } from '@src/ts/enums'
+import MoviesToShowCss from './MoviesToShow.module.scss'
 
 const MoviesToShow = ({ cardInfo }: any): JSX.Element | null => {
   return (
@@ -15,7 +15,7 @@ const MoviesToShow = ({ cardInfo }: any): JSX.Element | null => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default MoviesToShow;
+export default MoviesToShow

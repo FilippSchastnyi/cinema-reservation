@@ -1,7 +1,14 @@
+@import "@css/mixins/media-queries.scss";
+
 .container {
-    display: grid;
-    grid-gap: 44px;
-    grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
-    padding-top: 44px;
-    margin-bottom: 44px;
+  display: flex;
+  margin-right: -20px;
+  margin-left: -20px;
+  @include no-desktop {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+  @include mobile {
+    margin: 0;
+  }
 }

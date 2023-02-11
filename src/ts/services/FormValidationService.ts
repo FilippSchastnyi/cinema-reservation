@@ -1,5 +1,5 @@
-import * as yup from 'yup';
-import { AuthVariant } from '@src/ts/enums';
+import * as yup from 'yup'
+import { AuthVariant } from '@src/ts/enums'
 
 export enum EmailValidation {
   Valid,
@@ -18,35 +18,40 @@ class FormValidationService {
   getEmailErrorMessage = (validationAction: EmailValidation): string => {
     switch (validationAction) {
       case EmailValidation.Valid:
-        return 'Please enter a valid email format !';
+        return 'Please enter a valid email format !'
       case EmailValidation.Required:
-        return 'Email is required!';
-      default: return 'Email address is incorrect';
+        return 'Email is required!'
+      default:
+        return 'Email address is incorrect'
     }
-  };
+  }
 
-  getPasswordErrorMessage = (validationAction: PasswordValidation, length?: number): string => {
+  getPasswordErrorMessage = (
+    validationAction: PasswordValidation,
+    length?: number
+  ): string => {
     switch (validationAction) {
       case PasswordValidation.Required:
-        return 'Password is required please !';
+        return 'Password is required please !'
       case PasswordValidation.MinLength:
-        return `Password must contain at least ${length} characters`;
+        return `Password must contain at least ${length} characters`
       case PasswordValidation.MaxLength:
-        return `length should be less than ${length} symbols`;
+        return `length should be less than ${length} symbols`
       case PasswordValidation.Match:
-        return 'Password must match!';
+        return 'Password must match!'
       case PasswordValidation.Correct:
-        return 'The password should be filled in with latin letters and numbers!';
-      default: return 'password is wrong';
+        return 'The password should be filled in with latin letters and numbers!'
+      default:
+        return 'password is wrong'
     }
-  };
+  }
 
   getValidationSchema = (authVariant: AuthVariant) => {
     type AuthValidationType = {
-      email: any,
-      password: any,
+      email: any
+      password: any
       confirm_password?: any
-    };
+    }
     const authValidationSchema: AuthValidationType = {
       email: yup
         .string()
@@ -55,9 +60,12 @@ class FormValidationService {
       password: yup
         .string()
         .min(6, this.getPasswordErrorMessage(PasswordValidation.MinLength, 6))
-        .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, this.getPasswordErrorMessage(PasswordValidation.Correct))
+        .matches(
+          /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
+          this.getPasswordErrorMessage(PasswordValidation.Correct)
+        )
         .required(this.getPasswordErrorMessage(PasswordValidation.Required)),
-    };
+    }
 
     if (authVariant === AuthVariant.SignUp) {
       authValidationSchema.confirm_password = yup
@@ -65,12 +73,18 @@ class FormValidationService {
         .label('Repeat password')
         .required()
         .min(6, this.getPasswordErrorMessage(PasswordValidation.MinLength, 6))
-        .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/, this.getPasswordErrorMessage(PasswordValidation.Correct))
-        .oneOf([yup.ref('password'), null], this.getPasswordErrorMessage(PasswordValidation.Match));
+        .matches(
+          /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
+          this.getPasswordErrorMessage(PasswordValidation.Correct)
+        )
+        .oneOf(
+          [yup.ref('password'), null],
+          this.getPasswordErrorMessage(PasswordValidation.Match)
+        )
     }
 
-    return yup.object().shape(authValidationSchema);
-  };
+    return yup.object().shape(authValidationSchema)
+  }
 }
 
-export default new FormValidationService();
+export default new FormValidationService()

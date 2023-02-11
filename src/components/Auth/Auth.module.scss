@@ -1,4 +1,4 @@
-.authContainer{
+.authContainer {
   overflow: hidden;
   width: 1160px;
   height: 760px;
@@ -24,27 +24,27 @@
   }
 }
 
-.content{
+.content {
   flex: 0 0 50%;
   padding: 120px 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  form{
+  form {
     margin-bottom: 50px;
   }
 }
 
-.confirmation{
+.confirmation {
   display: flex;
   align-items: center;
 
-  button{
+  button {
     margin-left: 20px;
   }
 }
 
-.title{
+.title {
   font-weight: 500;
   font-size: 44px;
   line-height: 53px;

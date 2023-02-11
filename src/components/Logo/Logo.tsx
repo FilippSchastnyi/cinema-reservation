@@ -1,11 +1,7 @@
-import LogoCss from './Logo.module.scss';
+import LogoCss from './Logo.module.scss'
 
 const Logo = () => {
-  return (
-    <div className={LogoCss.logo}>
-      CinemaReservation
-    </div>
-  );
-};
+  return <div className={LogoCss.logo}>CinemaReservation</div>
+}
 
-export default Logo;
+export default Logo

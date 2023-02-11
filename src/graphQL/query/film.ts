@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const GET_FILM_CARDS_INFO = gql(`
   query GetCinemaFilms($input: InputQuery) {
@@ -9,4 +9,4 @@ export const GET_FILM_CARDS_INFO = gql(`
       image
     }
   }
-`);
+`)

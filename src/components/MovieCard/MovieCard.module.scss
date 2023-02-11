@@ -1,16 +1,19 @@
-@import "@css/config/colors.scss";
-@import "@css/mixins/media-queries.scss";
+@import '@css/config/colors.scss';
+@import '@css/mixins/media-queries.scss';
 
 .card {
   position: relative;
   border-radius: 20px;
   box-shadow: 0 1px 6px 0 rgb(51 61 83 / 10%);
   transition: transform 0.3s ease-in-out;
+  flex: 1 1 calc(100% / 4);
+  max-width: calc((100% / 4) - 20px);
+  margin: 20px;
 
   &:hover {
     transform: translateY(-3px);
     transition: transform 0.3s ease-in-out;
-    box-shadow: 0 21px 29px -23px #000000;
+    box-shadow: 0 21px 29px -23px $color-black;
 
     img {
       transform: scale(1.1);
@@ -21,16 +24,35 @@
       color: $color-primary;
     }
   }
+
+  @include no-desktop {
+    flex-wrap: wrap;
+    flex: 1 1 50%;
+    max-width: calc(50% - 20px);
+    min-height: 300px;
+    margin: 10px;
+  }
+
+  @include mobile {
+    margin: 10px auto 10px auto;
+    flex: 0 0 100%;
+    max-width: 280px;
+    min-height: 200px;
+  }
 }
 
 .top {
   border-radius: 20px;
+  flex: 0 1 400px;
+  max-height: 400px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 20px;
     transition: transform 0.3s ease-in-out;
   }
@@ -38,8 +60,10 @@
 
 .bottom {
   padding: 20px;
+
+  .group {
+    margin-top: auto;
+  }
 }
 
-.group {
-  margin-top: 10px;
-}
+
