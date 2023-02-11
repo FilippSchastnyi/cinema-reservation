@@ -1,5 +1,5 @@
-import { UserType } from '@src/ts/types';
+import { UserType } from '@src/ts/types'
 
 export type UserStateType = {
-  data: UserType | null,
-};
+  data: UserType | null
+}

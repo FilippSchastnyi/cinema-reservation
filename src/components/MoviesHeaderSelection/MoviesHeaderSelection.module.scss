@@ -1,0 +1,19 @@
+.container {
+  box-shadow: 0 12px 32px 0 rgb(51 61 83 / 10%);
+  border-radius: 20px;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  padding: 35px;
+}
+
+.item {
+  flex: 0 1 250px;
+  margin-right: 40px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

@@ -1,51 +1,53 @@
-import { useContext, useReducer } from 'react';
-import Logo from '@components/Logo/Logo';
-import Modal from '@ui/Modal/Modal';
-import Login from '@components/Auth/Login';
-import { AuthVariant } from '@src/ts/enums';
-import { AuthContext } from '@src/contexts/AuthContext';
-import { authModalReducer, initialState } from '@src/reducers/AuthModalReducer';
-import Registration from '@components/Auth/Registration';
-import HeaderActionGroup from '@components/HeaderActionGroup/HeaderActionGroup';
-import HeaderCss from './Header.module.scss';
+import { useContext, useReducer } from 'react'
+import Logo from '@components/Logo/Logo'
+import Modal from '@ui/Modal/Modal'
+import Login from '@components/Auth/Login'
+import { AuthVariant } from '@src/ts/enums'
+import { AuthContext } from '@src/contexts/AuthContext'
+import { authModalReducer, initialState } from '@src/reducers/AuthModalReducer'
+import Registration from '@components/Auth/Registration'
+import HeaderActionGroup from '@components/HeaderActionGroup/HeaderActionGroup'
+import HeaderCss from './Header.module.scss'
 
 const Header = (): JSX.Element => {
-  const authContext = useContext(AuthContext);
-  const [state, dispatch] = useReducer(authModalReducer, initialState);
+  const authContext = useContext(AuthContext)
+  const [state, dispatch] = useReducer(authModalReducer, initialState)
 
   const onHandleAuthMethodChange = (variant: AuthVariant) => {
     return () => {
       if (variant === AuthVariant.LogOut) {
-        authContext.logout();
+        authContext.logout()
       }
       dispatch({
         type: variant,
-      });
-    };
-  };
+      })
+    }
+  }
 
-  const renderAuthModal = (authPopupVariant: AuthVariant): JSX.Element | null => {
+  const renderAuthModal = (
+    authPopupVariant: AuthVariant
+  ): JSX.Element | null => {
     switch (authPopupVariant) {
       case AuthVariant.None:
-        return null;
+        return null
       case AuthVariant.LogIn:
         return (
           <Login
             changeAuthMethod={onHandleAuthMethodChange(AuthVariant.SignUp)}
             completeAuthMethod={onHandleAuthMethodChange(AuthVariant.None)}
           />
-        );
+        )
       case AuthVariant.SignUp:
         return (
           <Registration
             changeAuthMethod={onHandleAuthMethodChange(AuthVariant.LogIn)}
             completeAuthMethod={onHandleAuthMethodChange(AuthVariant.None)}
           />
-        );
+        )
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   return (
     <header className={HeaderCss.header}>
@@ -57,12 +59,10 @@ const Header = (): JSX.Element => {
         active={state.isModalActive}
         closeModal={onHandleAuthMethodChange(AuthVariant.None)}
       >
-        <>
-          {renderAuthModal(state.authPopupVariant)}
-        </>
+        <>{renderAuthModal(state.authPopupVariant)}</>
       </Modal>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

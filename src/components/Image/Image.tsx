@@ -1,12 +1,10 @@
-import React, { useRef } from 'react';
-import ImageCss from './Image.module.scss';
+import React, { useRef } from 'react'
+import ImageCss from './Image.module.scss'
 
-type IImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
+type IImageProps = React.ImgHTMLAttributes<HTMLImageElement>
 
-const Image = ({
-  src, srcSet, alt,
-}: IImageProps) => {
-  const imageRef = useRef<HTMLImageElement>(null);
+const Image = ({ src, srcSet, alt }: IImageProps) => {
+  const imageRef = useRef<HTMLImageElement>(null)
 
   return (
     <img
@@ -16,7 +14,7 @@ const Image = ({
       srcSet={srcSet}
       alt={alt}
     />
-  );
-};
+  )
+}
 
-export default Image;
+export default Image

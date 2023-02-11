@@ -1,23 +1,24 @@
-import { UserType } from '@src/ts/types';
-import { Reducer } from 'react';
+import { UserType } from '@src/ts/types'
+import { Reducer } from 'react'
 
-type AuthStateType = { user: UserType | null };
+type AuthStateType = { user: UserType | null }
 
-type AuthActionType =
-  { type: 'LOGIN'; payload: UserType } |
-  { type: 'LOGOUT' };
+type AuthActionType = { type: 'LOGIN'; payload: UserType } | { type: 'LOGOUT' }
 
 export const authState: AuthStateType = {
   user: null,
-};
+}
 
-export const authReducer: Reducer<AuthStateType, AuthActionType> = (state, action) => {
+export const authReducer: Reducer<AuthStateType, AuthActionType> = (
+  state,
+  action
+) => {
   switch (action.type) {
     case 'LOGIN':
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload }
     case 'LOGOUT':
-      return { ...state, user: null };
+      return { ...state, user: null }
     default:
-      return state;
+      return state
   }
-};
+}

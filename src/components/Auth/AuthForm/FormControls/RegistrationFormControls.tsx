@@ -1,9 +1,12 @@
-import Input from '@ui/Input/Input';
-import { useFormContext } from 'react-hook-form';
-import FormControlsCss from './FormControls.module.scss';
+import Input from '@ui/Input/Input'
+import { useFormContext } from 'react-hook-form'
+import FormControlsCss from './FormControls.module.scss'
 
 const RegistrationFormControls = () => {
-  const { register, formState: { errors } } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
   return (
     <>
       <div className={FormControlsCss.FormControl}>
@@ -34,7 +37,7 @@ const RegistrationFormControls = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default RegistrationFormControls;
+export default RegistrationFormControls
