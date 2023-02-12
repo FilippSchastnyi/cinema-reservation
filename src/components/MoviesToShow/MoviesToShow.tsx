@@ -6,13 +6,15 @@ const MoviesToShow = ({ cardInfo }: any): JSX.Element | null => {
   return (
     <div className={MoviesToShowCss.container}>
       {cardInfo.map((card) => (
-        <MovieCard
-          key={card.name}
-          name={card.name}
-          genres={card.genres}
-          image={card.image}
-          id={card.id}
-        />
+        <div className={MoviesToShowCss.item}>
+          <MovieCard
+            key={card.name}
+            name={card.name}
+            genres={card.genres}
+            image={card.image}
+            id={card.id}
+          />
+        </div>
       ))}
     </div>
   )
