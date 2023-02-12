@@ -4,10 +4,9 @@ import { useId } from 'react'
 import MovieCardCss from './MovieCard.module.scss'
 
 const MovieCard = ({ id, image, name, genres }: FilmCardType) => {
-  const generatedId = useId()
 
   return (
-    <Link to={`/afisha/${id}`} className={MovieCardCss.card} key={id}>
+    <Link to={`/afisha/${id}`} className={MovieCardCss.card}>
       <div className={MovieCardCss.top}>
         <img src={image} alt="movie" />
       </div>
@@ -15,8 +14,8 @@ const MovieCard = ({ id, image, name, genres }: FilmCardType) => {
         <p className="text text--bold">{name}</p>
         <p className={MovieCardCss.group}>
           {genres.map((genre, index) => (
-            <span key={generatedId} className="text">
-              {genres.length !== index + 1 ? `${genre  }, ` : genre}
+            <span key={genre.id} className="text">
+              {genres.length !== index + 1 ? `${genre.name  }, ` : genre.name}
             </span>
           ))}
         </p>

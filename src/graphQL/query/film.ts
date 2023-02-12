@@ -5,7 +5,10 @@ export const GET_FILM_CARDS_INFO = gql(`
     cardInfoList:getCinemaFilms(input: $input) {
       id:_id
       name
-      genres
+      genres {
+        _id
+        name
+      }
       image
     }
   }

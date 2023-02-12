@@ -2,19 +2,19 @@ import ReactPaginate from 'react-paginate'
 import PaginationCss from './Pagination.module.scss'
 
 interface IPaginationProps {
-  itemsPerPage?: number
+  itemsPerPage: number
   pageCount?: number
-  fetchPage?: () => void
+  onPaginationButtonClick: (page: number, limit: number) => void
 }
 
 const Pagination = ({
-  itemsPerPage,
+  itemsPerPage = 0,
   pageCount = 0,
-  fetchPage,
+  onPaginationButtonClick,
 }: IPaginationProps) => {
   const onHandlePageClick = (event: { selected: number }) => {
-    const activePage = event.selected
-    console.log(activePage)
+    const activePage = event.selected + 1
+    onPaginationButtonClick(activePage, itemsPerPage)
   }
 
   return (
@@ -22,7 +22,7 @@ const Pagination = ({
       onPageChange={onHandlePageClick}
       pageRangeDisplayed={5}
       pageCount={pageCount}
-      renderOnZeroPageCount={null}
+      renderOnZeroPageCount={()=>{}}
       containerClassName={PaginationCss.wrapper}
       previousLinkClassName={PaginationCss.previousBtn}
       nextLinkClassName={PaginationCss.nextBtn}

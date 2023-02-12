@@ -7,10 +7,15 @@ export type UserType = {
   access_token: string
 }
 
+type GenreDataType = {
+  id: string,
+  name: string
+}
+
 export type FilmCardType = {
   id: string
   name: string
-  genres: Array<string>
+  genres: Array<GenreDataType>
   image: string
 }
 

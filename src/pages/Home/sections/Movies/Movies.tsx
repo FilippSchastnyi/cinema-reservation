@@ -10,23 +10,38 @@ import { GET_ALL_CINEMAS } from '@src/graphQL/query/cinema'
 import Pagination from '@ui/Pagination/Pagination'
 
 const Movies = () => {
+
   const [cinema, setCinema] = useState<CinemaOptionType>({
     value: CinemaVariant.GOLDEN_SCREEN,
     label: 'GOLDEN_CINEMA',
   })
+
   const {
     loading: cinemaLoading,
     error: cinemaError,
     data: cinemaData,
   } = useQuery(GET_ALL_CINEMAS)
 
-  const { loading, error, data } = useQuery(GET_FILM_CARDS_INFO, {
+  const { loading, error, data, refetch } = useQuery(GET_FILM_CARDS_INFO, {
     variables: {
       input: {
         name: cinema.value,
+        page: 1,
+        limit: 1
       },
     },
   })
+
+  const fetchCinemaFilms = (page: number, limit: number)=> {
+    console.log(page, limit)
+    refetch({
+      input: {
+        name: cinema.value,
+        page,
+        limit
+      }
+    })
+  }
 
   if (loading || cinemaLoading) return <p>loading...</p>
   if (error || cinemaError) {
@@ -49,7 +64,7 @@ const Movies = () => {
           cinemaList={cinemaList}
         />
         <MoviesToShow cardInfo={cardInfoList} />
-        <Pagination itemsPerPage={2} pageCount={2} />
+        <Pagination itemsPerPage={1} pageCount={2} onPaginationButtonClick ={fetchCinemaFilms}/>
       </>
     </Section>
   )

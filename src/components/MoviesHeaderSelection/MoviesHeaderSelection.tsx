@@ -18,8 +18,6 @@ const MoviesHeaderSelection = ({
     }
   })
 
-  console.log(options)
-
   return (
     <div className={MoviesHeaderSelectionCss.container}>
       <ul className={MoviesHeaderSelectionCss.list}>
