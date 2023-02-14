@@ -8,7 +8,7 @@ const MoviesHeaderSelection = ({
   defaultCinema,
 }: {
   defaultCinema: any
-  changeCinema: (option: CinemaOptionType) => void
+  changeCinema: (page: number | undefined, limit: number | undefined, option: CinemaOptionType) => void
   cinemaList: Array<any>
 }) => {
   const options = cinemaList.map((cinema) => {
@@ -25,7 +25,7 @@ const MoviesHeaderSelection = ({
           <Select
             defaultValue={defaultCinema}
             options={options}
-            onChange={(option) => changeCinema(option as CinemaOptionType)}
+            onChange={(option) => changeCinema(undefined, undefined, option as CinemaOptionType)}
           />
         </li>
       </ul>

@@ -2,23 +2,29 @@ import ReactPaginate from 'react-paginate'
 import PaginationCss from './Pagination.module.scss'
 
 interface IPaginationProps {
+  activePage: number
   itemsPerPage: number
-  pageCount?: number
+  documentsCount?: number
   onPaginationButtonClick: (page: number, limit: number) => void
 }
 
 const Pagination = ({
+  activePage = 0,
   itemsPerPage = 0,
-  pageCount = 0,
+  documentsCount = 0,
   onPaginationButtonClick,
 }: IPaginationProps) => {
+
   const onHandlePageClick = (event: { selected: number }) => {
-    const activePage = event.selected + 1
-    onPaginationButtonClick(activePage, itemsPerPage)
+    const currentPage = event.selected + 1
+    onPaginationButtonClick(currentPage, itemsPerPage)
   }
+
+  const pageCount = Math.ceil(documentsCount/itemsPerPage)
 
   return (
     <ReactPaginate
+      forcePage={activePage}
       onPageChange={onHandlePageClick}
       pageRangeDisplayed={5}
       pageCount={pageCount}
