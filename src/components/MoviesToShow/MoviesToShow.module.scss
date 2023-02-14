@@ -2,13 +2,32 @@
 
 .container {
   display: flex;
-  margin-right: -20px;
-  margin-left: -20px;
+  margin: 0 -20px;
   @include no-desktop {
-    margin-right: -10px;
-    margin-left: -10px;
+    margin: 0 -10px;
   }
   @include mobile {
     margin: 0;
+  }
+}
+
+.item {
+  flex: 1 1 calc(100% / 4);
+  max-width: calc((100% / 4) - 20px);
+  margin: 20px;
+
+  @include no-desktop {
+    flex-wrap: wrap;
+    flex: 1 1 50%;
+    max-width: calc(50% - 20px);
+    min-height: 300px;
+    margin: 10px;
+  }
+
+  @include mobile {
+    margin: 10px auto 10px auto;
+    flex: 0 0 100%;
+    max-width: 280px;
+    min-height: 200px;
   }
 }
