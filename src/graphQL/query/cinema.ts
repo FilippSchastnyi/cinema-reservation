@@ -11,12 +11,10 @@ export const GET_CINEMAS_NAMES = gql(`
 
 export const GET_CINEMAS_INFO = gql(`
     query GetCinemasInfo {
-      cinemaDetails: getAllCinemas {
+      cinemaList: getAllCinemas {
         _id
         name
-        city{
-          name
-        }
+        city
         films {
           name
         }

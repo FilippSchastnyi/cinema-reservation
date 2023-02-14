@@ -1,13 +1,13 @@
-import MoviesToShow from "@components/MoviesToShow/MoviesToShow"
-import MoviesHeaderSelection from "@components/MoviesHeaderSelection/MoviesHeaderSelection"
-import Section from "@components/Section/Section"
-import {useState} from "react"
-import {CinemaVariant} from "@src/ts/enums"
-import {CinemaOptionType, FilmCardType} from "@src/ts/types"
-import {useQuery} from "@apollo/client"
-import {GET_FILM_CARDS_INFO} from "@src/graphQL/query/film"
-import {GET_CINEMAS_NAMES} from "@src/graphQL/query/cinema"
-import Pagination from "@ui/Pagination/Pagination"
+import MoviesToShow from '@components/MoviesToShow/MoviesToShow'
+import MoviesHeaderSelection from '@components/MoviesHeaderSelection/MoviesHeaderSelection'
+import Section from '@components/Section/Section'
+import { useState } from 'react'
+import { CinemaVariant } from '@src/ts/enums'
+import { CinemaOptionType, FilmCardType } from '@src/ts/types'
+import { useQuery } from '@apollo/client'
+import { GET_FILM_CARDS_INFO } from '@src/graphQL/query/film'
+import { GET_CINEMAS_NAMES } from '@src/graphQL/query/cinema'
+import Pagination from '@ui/Pagination/Pagination'
 
 const Movies = () => {
   const MOVIES_PAGE_LIMIT = 1
@@ -15,7 +15,7 @@ const Movies = () => {
 
   const [activeCinema, setActiveCinema] = useState<CinemaOptionType>({
     value: CinemaVariant.GOLDEN_SCREEN,
-    label: "GOLDEN_CINEMA",
+    label: 'GOLDEN_CINEMA',
   })
 
   const [activePage, setActivePage] = useState(0)
@@ -26,12 +26,7 @@ const Movies = () => {
     data: cinemaData,
   } = useQuery(GET_CINEMAS_NAMES)
 
-  const {
-    loading,
-    error,
-    data,
-    refetch
-  } = useQuery(GET_FILM_CARDS_INFO, {
+  const { loading, error, data, refetch } = useQuery(GET_FILM_CARDS_INFO, {
     variables: {
       input: {
         name: activeCinema.value,
@@ -49,7 +44,7 @@ const Movies = () => {
     if (option.value !== activeCinema.value) {
       setActiveCinema({
         value: option.value,
-        label: option.label
+        label: option.label,
       })
       setActivePage(0)
     }
@@ -70,12 +65,17 @@ const Movies = () => {
   }
 
   if (!data || !cinemaData) return null
-  const {cinemaList}: { cinemaList: Array<any> } = cinemaData
+
+  const { cinemaList }: { cinemaList: Array<any> } = cinemaData
   const {
     cinemaFilmsData,
   }: {
     cinemaFilmsData: { films: Array<FilmCardType>; documentsCount: number }
   } = data
+
+  const currentCinemaId = cinemaList.find(
+    (cinema) => cinema.name === activeCinema.value
+  ).id
 
   return (
     <Section hasContainer>
@@ -86,7 +86,10 @@ const Movies = () => {
           changeCinema={fetchCinemaFilms}
           cinemaList={cinemaList}
         />
-        <MoviesToShow cardInfo={cinemaFilmsData.films}/>
+        <MoviesToShow
+          cardInfo={cinemaFilmsData.films}
+          cinemaId={currentCinemaId}
+        />
         <Pagination
           activePage={activePage}
           itemsPerPage={MOVIES_PAGE_LIMIT}
