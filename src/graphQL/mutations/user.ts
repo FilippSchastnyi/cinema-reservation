@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client'
 
 export const CREATE_USER = gql(`
   mutation CreateUser($input: UserInput) {
-    createUser(input: $input) {
+    userData:createUser(input: $input) {
       ... on UserData {
         email
         user_id
@@ -18,11 +18,11 @@ export const CREATE_USER = gql(`
       }
     }
   }
-`);
+`)
 
 export const LOGIN_USER = gql(`
   mutation logInUser($input: UserInput){
-    logInUser(input: $input) {
+    userData:logInUser(input: $input) {
       __typename
       ... on UserData {
             message
@@ -36,4 +36,4 @@ export const LOGIN_USER = gql(`
       }
     }
   }
-`);
+`)

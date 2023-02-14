@@ -1,11 +1,11 @@
-import { useId } from 'react';
-import InputCss from './Input.module.scss';
+import { useId } from 'react'
+import InputCss from './Input.module.scss'
 
 interface IInputProps {
-  type?: string,
-  label?: string,
-  name?: string,
-  register?: any,
+  type?: string
+  label?: string
+  name?: string
+  register?: any
   errors?: any
 }
 
@@ -16,8 +16,8 @@ const Input = ({
   register,
   errors,
 }: IInputProps) => {
-  const idGen = useId();
-  const inputType = type;
+  const idGen = useId()
+  const inputType = type
   return (
     <div className={InputCss.Input}>
       <input
@@ -29,7 +29,7 @@ const Input = ({
       <label htmlFor={`${inputType}-${idGen}`}>{label}</label>
       <p className={InputCss.inputError}>{errors[name]?.message}</p>
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input

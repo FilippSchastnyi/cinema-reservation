@@ -1,12 +1,12 @@
-import Input from '@ui/Input/Input';
-import { useFormContext } from 'react-hook-form';
-import FormControlsCss from './FormControls.module.scss';
+import Input from '@ui/Input/Input'
+import { useFormContext } from 'react-hook-form'
+import FormControlsCss from './FormControls.module.scss'
 
 const LoginFormControls = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext()
   return (
     <>
       <div className={FormControlsCss.FormControl}>
@@ -26,7 +26,7 @@ const LoginFormControls = () => {
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default LoginFormControls;
+export default LoginFormControls

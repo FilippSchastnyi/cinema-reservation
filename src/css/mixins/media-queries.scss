@@ -1,4 +1,4 @@
-@import "src/css/config/grid";
+@import 'src/css/config/grid';
 
 @mixin desktop() {
   @media (min-width: $tabletMedia + 1) {

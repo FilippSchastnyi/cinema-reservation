@@ -1,6 +1,6 @@
-import Hero from '@pages/Home/sections/Hero/Hero';
-import Marquee from '@components/Marquee/Marquee';
-import Movies from '@pages/Home/sections/Movies/Movies';
+import Hero from '@pages/Home/sections/Hero/Hero'
+import Marquee from '@components/Marquee/Marquee'
+import Movies from '@pages/Home/sections/Movies/Movies'
 
 const Home = (): JSX.Element => (
   <>
@@ -8,6 +8,6 @@ const Home = (): JSX.Element => (
     <Marquee />
     <Movies />
   </>
-);
+)
 
-export default Home;
+export default Home
