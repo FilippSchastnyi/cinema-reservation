@@ -1,18 +1,23 @@
 import MovieCard from '@components/MovieCard/MovieCard'
-import { CinemaVariant } from '@src/ts/enums'
+import {FilmCardType} from "@src/ts/types"
+import {useId} from "react"
 import MoviesToShowCss from './MoviesToShow.module.scss'
 
 const MoviesToShow = ({ cardInfo }: any): JSX.Element | null => {
+  const generatedId = useId()
+
   return (
     <div className={MoviesToShowCss.container}>
-      {cardInfo.map((card) => (
-        <MovieCard
-          key={card.name}
-          name={card.name}
-          genres={card.genres}
-          image={card.image}
-          id={card.id}
-        />
+      {cardInfo.map((card: FilmCardType) => (
+        <div key={generatedId} className={MoviesToShowCss.item}>
+          <MovieCard
+            key={card.name}
+            name={card.name}
+            genres={card.genres}
+            image={card.image}
+            id={card.id}
+          />
+        </div>
       ))}
     </div>
   )

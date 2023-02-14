@@ -1,55 +1,98 @@
-import MoviesToShow from '@components/MoviesToShow/MoviesToShow'
-import MoviesHeaderSelection from '@components/MoviesHeaderSelection/MoviesHeaderSelection'
-import Section from '@components/Section/Section'
-import { useState } from 'react'
-import { CinemaVariant } from '@src/ts/enums'
-import { CinemaOptionType, FilmCardType } from '@src/ts/types'
-import { useQuery } from '@apollo/client'
-import { GET_FILM_CARDS_INFO } from '@src/graphQL/query/film'
-import { GET_ALL_CINEMAS } from '@src/graphQL/query/cinema'
-import Pagination from '@ui/Pagination/Pagination'
+import MoviesToShow from "@components/MoviesToShow/MoviesToShow"
+import MoviesHeaderSelection from "@components/MoviesHeaderSelection/MoviesHeaderSelection"
+import Section from "@components/Section/Section"
+import {useState} from "react"
+import {CinemaVariant} from "@src/ts/enums"
+import {CinemaOptionType, FilmCardType} from "@src/ts/types"
+import {useQuery} from "@apollo/client"
+import {GET_FILM_CARDS_INFO} from "@src/graphQL/query/film"
+import {GET_CINEMAS_NAMES} from "@src/graphQL/query/cinema"
+import Pagination from "@ui/Pagination/Pagination"
 
 const Movies = () => {
-  const [cinema, setCinema] = useState<CinemaOptionType>({
+  const MOVIES_PAGE_LIMIT = 1
+  const START_PAGE = 1
+
+  const [activeCinema, setActiveCinema] = useState<CinemaOptionType>({
     value: CinemaVariant.GOLDEN_SCREEN,
-    label: 'GOLDEN_CINEMA',
+    label: "GOLDEN_CINEMA",
   })
+
+  const [activePage, setActivePage] = useState(0)
+
   const {
     loading: cinemaLoading,
     error: cinemaError,
     data: cinemaData,
-  } = useQuery(GET_ALL_CINEMAS)
+  } = useQuery(GET_CINEMAS_NAMES)
 
-  const { loading, error, data } = useQuery(GET_FILM_CARDS_INFO, {
+  const {
+    loading,
+    error,
+    data,
+    refetch
+  } = useQuery(GET_FILM_CARDS_INFO, {
     variables: {
       input: {
-        name: cinema.value,
+        name: activeCinema.value,
+        page: START_PAGE,
+        limit: MOVIES_PAGE_LIMIT,
       },
     },
   })
+
+  const fetchCinemaFilms = (
+    page: number | undefined = START_PAGE,
+    limit: number | undefined = MOVIES_PAGE_LIMIT,
+    option: CinemaOptionType = activeCinema
+  ) => {
+    if (option.value !== activeCinema.value) {
+      setActiveCinema({
+        value: option.value,
+        label: option.label
+      })
+      setActivePage(0)
+    }
+    setActivePage(page - 1)
+    refetch({
+      input: {
+        name: option.value,
+        page,
+        limit,
+      },
+    })
+  }
 
   if (loading || cinemaLoading) return <p>loading...</p>
   if (error || cinemaError) {
     console.log(error)
     return null
   }
-  if (!data || !cinemaData) return null
-  const { cinemaList }: { cinemaList: Array<any> } = cinemaData
-  const { cardInfoList }: { cardInfoList: Array<FilmCardType> } = data
 
-  console.log(cinemaList)
+  if (!data || !cinemaData) return null
+  const {cinemaList}: { cinemaList: Array<any> } = cinemaData
+  const {
+    cinemaFilmsData,
+  }: {
+    cinemaFilmsData: { films: Array<FilmCardType>; documentsCount: number }
+  } = data
 
   return (
     <Section hasContainer>
       <>
         <h2 className="title">Movies</h2>
         <MoviesHeaderSelection
-          defaultCinema={cinema}
-          changeCinema={setCinema}
+          defaultCinema={activeCinema}
+          changeCinema={fetchCinemaFilms}
           cinemaList={cinemaList}
         />
-        <MoviesToShow cardInfo={cardInfoList} />
-        <Pagination itemsPerPage={2} pageCount={2} />
+        <MoviesToShow cardInfo={cinemaFilmsData.films}/>
+        <Pagination
+          activePage={activePage}
+          itemsPerPage={MOVIES_PAGE_LIMIT}
+          documentsCount={cinemaFilmsData.documentsCount}
+          onPaginationButtonClick={fetchCinemaFilms}
+        />
       </>
     </Section>
   )
