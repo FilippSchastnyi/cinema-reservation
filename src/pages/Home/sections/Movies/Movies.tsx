@@ -6,7 +6,7 @@ import {CinemaVariant} from "@src/ts/enums"
 import {CinemaOptionType, FilmCardType} from "@src/ts/types"
 import {useQuery} from "@apollo/client"
 import {GET_FILM_CARDS_INFO} from "@src/graphQL/query/film"
-import {GET_ALL_CINEMAS} from "@src/graphQL/query/cinema"
+import {GET_CINEMAS_NAMES} from "@src/graphQL/query/cinema"
 import Pagination from "@ui/Pagination/Pagination"
 
 const Movies = () => {
@@ -24,7 +24,7 @@ const Movies = () => {
     loading: cinemaLoading,
     error: cinemaError,
     data: cinemaData,
-  } = useQuery(GET_ALL_CINEMAS)
+  } = useQuery(GET_CINEMAS_NAMES)
 
   const {
     loading,
