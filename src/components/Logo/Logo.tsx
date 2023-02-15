@@ -1,7 +1,12 @@
+import { Link } from 'react-router-dom'
 import LogoCss from './Logo.module.scss'
 
 const Logo = () => {
-  return <div className={LogoCss.logo}>CinemaReservation</div>
+  return (
+    <Link to="/" className={LogoCss.logo}>
+      CinemaReservation
+    </Link>
+  )
 }
 
 export default Logo

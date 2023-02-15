@@ -1,15 +1,21 @@
 import MovieCard from '@components/MovieCard/MovieCard'
-import {FilmCardType} from "@src/ts/types"
-import {useId} from "react"
+import { FilmCardType } from '@src/ts/types'
+import { Link } from 'react-router-dom'
 import MoviesToShowCss from './MoviesToShow.module.scss'
 
-const MoviesToShow = ({ cardInfo }: any): JSX.Element | null => {
-  const generatedId = useId()
+const MoviesToShow = ({ cardInfo, cinemaId }: any): JSX.Element | null => {
+  const goToScheduleUrl = (cardId: string) => {
+    return `schedule/${cinemaId}/${cardId}`
+  }
 
   return (
     <div className={MoviesToShowCss.container}>
       {cardInfo.map((card: FilmCardType) => (
-        <div key={generatedId} className={MoviesToShowCss.item}>
+        <Link
+          key={card.id}
+          to={goToScheduleUrl(card.id)}
+          className={MoviesToShowCss.item}
+        >
           <MovieCard
             key={card.name}
             name={card.name}
@@ -17,7 +23,7 @@ const MoviesToShow = ({ cardInfo }: any): JSX.Element | null => {
             image={card.image}
             id={card.id}
           />
-        </div>
+        </Link>
       ))}
     </div>
   )

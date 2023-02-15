@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.4",
+    "@apollo/client": "^3.7.7",
     "@hookform/resolvers": "^2.9.10",
     "@reduxjs/toolkit": "^1.9.2",
     "@types/apollo-upload-client": "^17.0.2",
@@ -17,6 +17,7 @@
     "@vitejs/plugin-react-swc": "^3.0.0",
     "apollo-upload-client": "^17.0.0",
     "graphql": "^16.6.0",
+    "graphql-tag": "^2.12.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.42.1",
