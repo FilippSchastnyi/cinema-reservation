@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom'
 import MoviesToShowCss from './MoviesToShow.module.scss'
 
 const MoviesToShow = ({ cardInfo, cinemaId }: any): JSX.Element | null => {
-  const goToScheduleUrl = (cardId: string) => `schedule/${cinemaId}/${cardId}`
+  const goToScheduleUrl = (cardId: string) => {
+    return `schedule/${cinemaId}/${cardId}`
+  }
 
   return (
     <div className={MoviesToShowCss.container}>
