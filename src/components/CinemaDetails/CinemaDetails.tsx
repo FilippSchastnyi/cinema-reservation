@@ -2,6 +2,7 @@ import { CinemaDetailsType } from '@src/ts/types'
 import CinemaDetailsCss from './CinemaDetails.module.scss'
 
 const CinemaDetails = ({ id, name, city, films }: CinemaDetailsType) => {
+
   return (
     <div className={CinemaDetailsCss.container}>
       <div className={CinemaDetailsCss.left}>

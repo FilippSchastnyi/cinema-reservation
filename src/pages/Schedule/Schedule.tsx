@@ -7,12 +7,19 @@ type UrlScheduleParams = {cinemaId: string, cardId: string}
 
 const Schedule = () => {
   const {cinemaId, cardId} = useParams<UrlScheduleParams>()
-  console.log(cinemaId)
+
   const {data, loading, error} = useQuery(GET_ONE_CINEMA_INFO, {
     variables: {
       id: cinemaId
     }
   })
+
+  const {data, loading, error} = useQuery(GET_ONE_CINEMA_INFO, {
+    variables: {
+      id: cinemaId
+    }
+  })
+
   if (error){
     console.log(error)
   }
