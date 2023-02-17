@@ -1,35 +1,52 @@
 import Section from '@components/Section/Section'
 import {useParams} from "react-router-dom"
 import {useQuery} from "@apollo/client"
-import { GET_ONE_CINEMA_INFO } from "@src/graphQL/query/cinema"
+import {GET_CINEMA_HALLS_DETAILS} from "@src/graphQL/query/hall"
+import {GET_ONE_CINEMA_INFO} from "@src/graphQL/query/cinema"
+import {ProcessType} from "@src/ts/types"
 
 type UrlScheduleParams = {cinemaId: string, cardId: string}
 
 const Schedule = () => {
   const {cinemaId, cardId} = useParams<UrlScheduleParams>()
 
-  const {data, loading, error} = useQuery(GET_ONE_CINEMA_INFO, {
+
+  const { data: hallsDetailsData, loading: hallsLoading, error: hallsError} = useQuery(GET_CINEMA_HALLS_DETAILS, {
     variables: {
-      id: cinemaId
+      cinemaId
     }
   })
 
-  const {data, loading, error} = useQuery(GET_ONE_CINEMA_INFO, {
+  const {data: cinemaData, loading: cinemaLoading, error: cinemaError} = useQuery(GET_ONE_CINEMA_INFO, {
     variables: {
-      id: cinemaId
+      id: cardId
     }
   })
 
-  if (error){
-    console.log(error)
+  const scheduleProcess: ProcessType = {
+    error: hallsError || cinemaError,
+    loading: hallsLoading || cinemaLoading,
+    isData: hallsDetailsData && cinemaData
   }
-  if (!data) return null
-  console.log(data.cinema.name)
+
+  if (scheduleProcess.error) {
+    console.log(scheduleProcess.error)
+  }
+
+  if (scheduleProcess.loading){
+    return (<p>...Loading</p>)
+  }
+
+  if (!scheduleProcess.isData) return null
+
+  const {hallsData} = hallsDetailsData
+
   return (
     <Section hasContainer>
-      <span>
-        Hi, Need work
-      </span>
+      <div className="title text--bold">
+        {hallsData.cinemaName}
+      </div>
+      movieDetails
     </Section>
   )
 }
