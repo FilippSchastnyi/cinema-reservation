@@ -1,4 +1,11 @@
 import { CinemaVariant } from '@src/ts/enums'
+import {ApolloError} from "@apollo/client"
+
+export type ProcessType = {
+  error: ApolloError | undefined,
+  loading: boolean,
+  isData: boolean
+}
 
 export type UserType = {
   roles: string[]
