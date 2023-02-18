@@ -2,12 +2,13 @@ import Section from '@components/Section/Section'
 import {useParams} from "react-router-dom"
 import {useQuery} from "@apollo/client"
 import {GET_CINEMA_HALLS_DETAILS} from "@src/graphQL/query/hall"
-import {GET_ONE_CINEMA_INFO} from "@src/graphQL/query/cinema"
-import {ProcessType} from "@src/ts/types"
+import {MovieInfoType, ProcessType} from "@src/ts/types"
+import MovieDetails from "@components/MovieDetails/MovieDetails"
+import {GET_FILM_INFO} from "@src/graphQL/query/film"
 
 type UrlScheduleParams = {cinemaId: string, cardId: string}
 
-const Schedule = () => {
+const MoviePreview = () => {
   const {cinemaId, cardId} = useParams<UrlScheduleParams>()
 
 
@@ -17,16 +18,17 @@ const Schedule = () => {
     }
   })
 
-  const {data: cinemaData, loading: cinemaLoading, error: cinemaError} = useQuery(GET_ONE_CINEMA_INFO, {
+  const {data: filmInfoData, loading: filmLoading, error: filmError} = useQuery(GET_FILM_INFO, {
     variables: {
-      id: cardId
+      filmId: cardId
     }
   })
 
+
   const scheduleProcess: ProcessType = {
-    error: hallsError || cinemaError,
-    loading: hallsLoading || cinemaLoading,
-    isData: hallsDetailsData && cinemaData
+    error: hallsError || filmError,
+    loading: hallsLoading || filmLoading,
+    isData: hallsDetailsData && filmInfoData
   }
 
   if (scheduleProcess.error) {
@@ -39,16 +41,20 @@ const Schedule = () => {
 
   if (!scheduleProcess.isData) return null
 
-  const {hallsData} = hallsDetailsData
+  const { movieData } : { movieData: MovieInfoType } = filmInfoData
+  const { hallsData } = hallsDetailsData
+
+  console.log(movieData)
+  console.log(hallsData)
 
   return (
     <Section hasContainer>
       <div className="title text--bold">
         {hallsData.cinemaName}
       </div>
-      movieDetails
+       <MovieDetails movie={movieData}/>
     </Section>
   )
 }
 
-export default Schedule
+export default MoviePreview

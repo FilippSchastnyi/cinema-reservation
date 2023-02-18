@@ -1,4 +1,4 @@
-import Image from '@components/Image/Image'
+import Image from '@components/_UI/Image/Image'
 import logInBgImg from '@assets/images/auth/login-bg.jpg'
 import logInBgImgX2 from '@assets/images/auth/login-bg@2x.jpg'
 import AuthForm from '@components/Auth/AuthForm/AuthForm'

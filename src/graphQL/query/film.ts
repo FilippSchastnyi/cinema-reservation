@@ -19,8 +19,8 @@ export const GET_FILM_CARDS_INFO = gql`
 
 export const GET_FILM_INFO = gql`
   query GetOneCinemaFilm($filmId: ID!) {
-    filmData: getOneFilm(id: $filmId) {
-      id: _id
+    movieData: getOneFilm(id: $filmId) {
+      _id
       name
       description
       country
@@ -28,7 +28,7 @@ export const GET_FILM_INFO = gql`
       duration
       release
       genres {
-        _id
+        id:_id
         name
       }
       image
