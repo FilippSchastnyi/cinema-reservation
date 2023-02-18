@@ -3,7 +3,7 @@ import React, { ReactComponentElement } from 'react'
 interface ISectionProps {
   hasContainer?: boolean
   noMargin?: boolean
-  children: React.ReactElement
+  children: React.ReactNode
 }
 
 const Section = ({

@@ -1,4 +1,4 @@
-import MovieCard from '@components/MovieCard/MovieCard'
+import MovieCard from '@components/MoviesToShow/MovieCard/MovieCard'
 import { FilmCardType } from '@src/ts/types'
 import { Link } from 'react-router-dom'
 import MoviesToShowCss from './MoviesToShow.module.scss'

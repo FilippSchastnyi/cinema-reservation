@@ -14,7 +14,7 @@ export type UserType = {
   access_token: string
 }
 
-type BaseNameType = {
+export type BaseNameType = {
   id: string
   name: string
 }
@@ -31,15 +31,16 @@ export type CinemaOptionType = {
   label: string
 }
 
-export type FilmType = {
-  id: string
+export type MovieInfoType = {
+  id?: string
   name: string
   description: string
   director: string
   duration: string
   release: string
-  genres: Array<string>
+  genres: Array<BaseNameType>
   image: string
+  country: string
 }
 
 export type CinemaDetailsType = {
