@@ -14,7 +14,7 @@ export type UserType = {
   access_token: string
 }
 
-type BaseNameType = {
+export type BaseNameType = {
   id: string
   name: string
 }
@@ -31,15 +31,16 @@ export type CinemaOptionType = {
   label: string
 }
 
-export type FilmType = {
-  id: string
+export type MovieInfoType = {
+  id?: string
   name: string
   description: string
   director: string
   duration: string
   release: string
-  genres: Array<string>
+  genres: Array<BaseNameType>
   image: string
+  country: string
 }
 
 export type CinemaDetailsType = {
@@ -58,12 +59,21 @@ export type CinemaType = {
   store: string[]
 }
 
-export type HallType = {
+type ShowTimeType = {
   id: string
+  startTime: Date
+}
+
+export type HallType = {
+  id?: string
   name: string
-  size: string
-  plan: string[]
-  schedule: string[]
+  plan?: string[]
+  schedule: ShowTimeType[]
+}
+
+export type HallDataType = {
+  cinemaName: string,
+  halls: HallType[]
 }
 
 export type ScheduleType = {
