@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import avengers from '@src/assets/images/hero-slider/bg.jpg'
 import crew from '@src/assets/images/hero-slider/bg_1.jpeg'
 import joker from '@src/assets/images/hero-slider/bg_2.jpeg'
-import Image from '@components/Image/Image'
+import Image from '@components/_UI/Image/Image'
 import './HeroSlider.scss'
 import HeroSliderCard from '@components/HeroSlider/HeroSliderCard/HeroSliderCard'
 

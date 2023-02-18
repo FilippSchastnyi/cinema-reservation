@@ -1,4 +1,11 @@
 import { CinemaVariant } from '@src/ts/enums'
+import {ApolloError} from "@apollo/client"
+
+export type ProcessType = {
+  error: ApolloError | undefined,
+  loading: boolean,
+  isData: boolean
+}
 
 export type UserType = {
   roles: string[]
@@ -7,15 +14,15 @@ export type UserType = {
   access_token: string
 }
 
-type GenreDataType = {
-  id: string,
+export type BaseNameType = {
+  id: string
   name: string
 }
 
 export type FilmCardType = {
   id: string
   name: string
-  genres: Array<GenreDataType>
+  genres: Array<BaseNameType>
   image: string
 }
 
@@ -24,15 +31,23 @@ export type CinemaOptionType = {
   label: string
 }
 
-export type FilmType = {
-  id: string
+export type MovieInfoType = {
+  id?: string
   name: string
   description: string
   director: string
   duration: string
   release: string
-  genres: Array<string>
+  genres: Array<BaseNameType>
   image: string
+  country: string
+}
+
+export type CinemaDetailsType = {
+  id: string
+  name: string
+  city: string
+  films: [BaseNameType]
 }
 
 export type CinemaType = {
