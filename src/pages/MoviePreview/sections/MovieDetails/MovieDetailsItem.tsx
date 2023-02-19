@@ -1,5 +1,4 @@
 import React from 'react'
-import MovieDetailsCss from '@components/MovieDetails/MovieDetails.module.scss'
 import {BaseNameType} from "@src/ts/types"
 
 type MovieDetailsItemProps = {

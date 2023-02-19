@@ -6,7 +6,7 @@ import { AuthVariant } from '@src/ts/enums'
 import { AuthContext } from '@src/contexts/AuthContext'
 import { authModalReducer, initialState } from '@src/reducers/AuthModalReducer'
 import Registration from '@components/Auth/Registration'
-import HeaderActionGroup from '@components/HeaderActionGroup/HeaderActionGroup'
+import HeaderActionGroup from '@components/Layout/components/Header/HeaderActionGroup/HeaderActionGroup'
 import HeaderCss from './Header.module.scss'
 
 const Header = (): JSX.Element => {

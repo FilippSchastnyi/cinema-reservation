@@ -1,59 +1,37 @@
+import MovieDetails from '@pages/MoviePreview/sections/MovieDetails/MovieDetails'
+import WatchInCinema from '@pages/MoviePreview/sections/WatchInCinema/WatchInCinema'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
+import { GET_CINEMA_HALLS_DETAILS } from '@src/graphQL/query/hall'
 import Section from '@components/Section/Section'
-import {useParams} from "react-router-dom"
-import {useQuery} from "@apollo/client"
-import {GET_CINEMA_HALLS_DETAILS} from "@src/graphQL/query/hall"
-import {MovieInfoType, ProcessType} from "@src/ts/types"
-import MovieDetails from "@components/MovieDetails/MovieDetails"
-import {GET_FILM_INFO} from "@src/graphQL/query/film"
+import {HallDataType, HallType} from "@src/ts/types"
 
-type UrlScheduleParams = {cinemaId: string, cardId: string}
+type UrlScheduleParams = { cinemaId: string; movieId: string }
 
 const MoviePreview = () => {
-  const {cinemaId, cardId} = useParams<UrlScheduleParams>()
-
-
-  const { data: hallsDetailsData, loading: hallsLoading, error: hallsError} = useQuery(GET_CINEMA_HALLS_DETAILS, {
+  const { cinemaId, movieId } = useParams<UrlScheduleParams>()
+  const { data, loading, error } = useQuery<{ hallsData: HallDataType }>(GET_CINEMA_HALLS_DETAILS, {
     variables: {
-      cinemaId
-    }
+      cinemaId,
+    },
   })
 
-  const {data: filmInfoData, loading: filmLoading, error: filmError} = useQuery(GET_FILM_INFO, {
-    variables: {
-      filmId: cardId
-    }
-  })
-
-
-  const scheduleProcess: ProcessType = {
-    error: hallsError || filmError,
-    loading: hallsLoading || filmLoading,
-    isData: hallsDetailsData && filmInfoData
+  if (error) {
+    console.log(error)
   }
 
-  if (scheduleProcess.error) {
-    console.log(scheduleProcess.error)
+  if (loading) {
+    return <p>...Loading</p>
   }
 
-  if (scheduleProcess.loading){
-    return (<p>...Loading</p>)
-  }
+  if (!data) return null
 
-  if (!scheduleProcess.isData) return null
-
-  const { movieData } : { movieData: MovieInfoType } = filmInfoData
-  const { hallsData } = hallsDetailsData
-
-  console.log(movieData)
-  console.log(hallsData)
-
+  const {hallsData} = data
   return (
-    <Section hasContainer>
-      <div className="title text--bold">
-        {hallsData.cinemaName}
-      </div>
-       <MovieDetails movie={movieData}/>
-    </Section>
+    <>
+      <MovieDetails movieId={movieId as string} title={hallsData.cinemaName}/>
+      <WatchInCinema halls={hallsData.halls} />
+    </>
   )
 }
 

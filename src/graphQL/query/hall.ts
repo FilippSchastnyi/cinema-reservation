@@ -5,8 +5,12 @@ export const GET_CINEMA_HALLS_DETAILS = gql`
         hallsData:getAllHalls(cinemaId: $cinemaId) {
             cinemaName,
             halls {
+                id: _id
                 name,
-                showTimeList
+                schedule {
+                    id: _id
+                    startTime
+                }
             }
         }
     }
