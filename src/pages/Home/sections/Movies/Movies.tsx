@@ -1,5 +1,3 @@
-import MoviesToShow from '@components/MoviesToShow/MoviesToShow'
-import MoviesHeaderSelection from '@components/MoviesHeaderSelection/MoviesHeaderSelection'
 import Section from '@components/Section/Section'
 import { useState } from 'react'
 import { CinemaVariant } from '@src/ts/enums'
@@ -8,6 +6,8 @@ import { useQuery } from '@apollo/client'
 import { GET_FILM_CARDS_INFO } from '@src/graphQL/query/film'
 import { GET_CINEMAS_NAMES } from '@src/graphQL/query/cinema'
 import Pagination from '@ui/Pagination/Pagination'
+import MoviesToShow from "@pages/Home/sections/Movies/MoviesToShow/MoviesToShow"
+import MoviesHeaderSelection from "./MoviesHeaderSelection/MoviesHeaderSelection"
 
 const Movies = () => {
   const MOVIES_PAGE_LIMIT = 1

@@ -18,8 +18,8 @@ export const GET_FILM_CARDS_INFO = gql`
 `
 
 export const GET_FILM_INFO = gql`
-  query GetOneCinemaFilm($filmId: ID!) {
-    movieData: getOneFilm(id: $filmId) {
+  query GetOneCinemaFilm($movieId: ID!) {
+    movieData: getOneFilm(id: $movieId) {
       _id
       name
       description

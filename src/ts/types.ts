@@ -59,12 +59,21 @@ export type CinemaType = {
   store: string[]
 }
 
-export type HallType = {
+type ShowTimeType = {
   id: string
+  startTime: Date
+}
+
+export type HallType = {
+  id?: string
   name: string
-  size: string
-  plan: string[]
-  schedule: string[]
+  plan?: string[]
+  schedule: ShowTimeType[]
+}
+
+export type HallDataType = {
+  cinemaName: string,
+  halls: HallType[]
 }
 
 export type ScheduleType = {
