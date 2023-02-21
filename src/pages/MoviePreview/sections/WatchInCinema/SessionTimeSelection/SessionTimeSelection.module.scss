@@ -1,0 +1,34 @@
+@import "@css/config/colors.scss";
+
+.container {
+  border-radius: 8px;
+  background-color: $color-white;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  padding: 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.left {
+  flex: 0 1 350px;
+  display: flex;
+  align-items: center;
+}
+
+.right {
+  button {
+    margin-left: 10px;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}

@@ -1,6 +1,14 @@
 @import "@css/config/colors.scss";
 
-.list {
-  border-radius: 8px;
-  background-color: $color-white;
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .actionGroup {
+    margin-top: 20px;
+    align-self: end;
+    button {
+      margin-left: 10px;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import MovieCard from '@pages/Home/sections/Movies/MoviesToShow/MovieCard/MovieCard'
 import {FilmCardType} from "@src/ts/types"
 import { Link } from 'react-router-dom'
-import UrlService from "@src/ts/services/UrlService"
+import UrlService from "@src/ts/services/NavigationService"
 import MoviesToShowCss from './MoviesToShow.module.scss'
 
 type MovieToShowProps = {

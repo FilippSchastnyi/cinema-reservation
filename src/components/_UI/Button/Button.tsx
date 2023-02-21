@@ -1,11 +1,11 @@
-import { MouseEventHandler } from 'react'
+import React from 'react'
 import ButtonCss from './Button.module.scss'
 
-interface IButtonProps {
+interface ButtonProps {
   /**
    * Function for clicking
    */
-  onClick?: MouseEventHandler<any> | undefined
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   /**
    * Children to be displayed in the button
    */
@@ -23,7 +23,7 @@ interface IButtonProps {
   /**
    * Checks if the button should be disabled
    */
-  isDisabled?: boolean
+  disabled?: boolean
   /**
    * Determines if the spinner is to be shown or not.
    * @type {boolean}
@@ -33,26 +33,38 @@ interface IButtonProps {
    * Determines the default behavior of the button
    */
   type?: 'button' | 'submit' | 'reset' | undefined
+  /**
+   * Choose one of the button view type
+   */
+  isSelected?: boolean
+  /**
+   * It Shows if button was selected (it needs to show specific selected element)
+   */
 }
 
 const Button = ({
   children,
   size = 'md',
   variant = 'contained',
-  onClick = undefined,
+  onClick,
   showSpinner = false,
-  isDisabled = false,
+  disabled = false,
   type = 'button',
-}: IButtonProps): JSX.Element => {
-  const cls = [ButtonCss.btn]
-  cls.push(ButtonCss[`btn--${size}`])
-  cls.push(ButtonCss[variant])
+  isSelected = false,
+}: ButtonProps): JSX.Element => {
+
+  const cls = [
+    ButtonCss.btn,
+    ButtonCss[`btn--${size}`],
+    ButtonCss[`btn--${variant}`],
+    isSelected && ButtonCss[`btn--selected`]
+  ]
 
   return (
     <button
       type={type}
       className={cls.join(' ')}
-      disabled={isDisabled}
+      disabled={disabled}
       onClick={onClick}
     >
       {showSpinner && <>loading...</>}

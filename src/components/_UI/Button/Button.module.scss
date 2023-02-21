@@ -34,18 +34,25 @@
     width: 100%;
   }
 
-  &--white {
+  &--outlined {
     background: $color-white;
     color: $color-primary;
+    border: 2px solid $color-primary;
+    transition: opacity 0.3s ease-in-out ;
+  }
+
+  &--selected{
+      background: $color-primary;
+      color: $color-white;
+      transition: opacity 0.3s ease-in-out ;
+     &:hover{
+      opacity: 1;
+    }
   }
 
   &[disabled] {
     opacity: 0.5;
     pointer-events: none;
     user-select: none;
-
-    &:hover {
-      opacity: 0.5;
-    }
   }
 }
