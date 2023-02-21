@@ -18,6 +18,7 @@ const MoviePreview = () => {
 
   if (error) {
     console.log(error)
+    const date = new Date()
   }
 
   if (loading) {
