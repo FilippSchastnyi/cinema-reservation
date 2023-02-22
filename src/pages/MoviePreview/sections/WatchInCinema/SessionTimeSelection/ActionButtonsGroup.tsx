@@ -8,7 +8,9 @@ const ActionButtonsGroup = ({canContinue = false}) => {
       <Link to={NavigationService.goToHomePage()}>
         <Button variant='outlined'>Back</Button>
       </Link>
-      <Button disabled={canContinue}>Continue</Button>
+      <Link to={NavigationService.goToHomePage()}>
+        <Button disabled={canContinue}>Continue</Button>
+      </Link>
     </>
   )
 }
