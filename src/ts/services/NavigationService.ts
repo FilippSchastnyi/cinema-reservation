@@ -3,6 +3,10 @@ class NavigationService {
     return `schedule/${cinemaId}/${movieId}`
   }
 
+  goToBookingSession = (cinemaId: string, sessionId: string): string => {
+    return `booking/${cinemaId}/${sessionId}`
+  }
+
   goToHomePage = (): string => {
     return `/`
   }
