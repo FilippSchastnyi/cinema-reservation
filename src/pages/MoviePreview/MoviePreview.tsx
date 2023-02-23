@@ -3,7 +3,6 @@ import WatchInCinema from '@pages/MoviePreview/sections/WatchInCinema/WatchInCin
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { GET_CINEMA_HALLS_DETAILS } from '@src/graphQL/query/hall'
-import Section from '@components/Section/Section'
 import {HallDataType, HallType} from "@src/ts/types"
 
 type UrlScheduleParams = { cinemaId: string; movieId: string }

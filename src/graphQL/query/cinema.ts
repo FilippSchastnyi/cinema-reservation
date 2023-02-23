@@ -20,6 +20,27 @@ export const GET_CINEMAS_NAMES = gql`
   }
 `
 
+export const GET_CINEMA_STORE = gql`
+  query getOneCinemaStore($id: ID!) {
+    cinema: getOneCinema(id: $id) {
+      _id
+      name
+      city
+      store{
+          goods {
+              name
+              price
+              count
+          }
+          tickets {
+              type
+              price
+          }
+      }
+    }
+  }
+`
+
 export const GET_CINEMAS_INFO = gql`
   query getCinemasInfo {
     cinemaList: getAllCinemas {
@@ -31,9 +52,9 @@ export const GET_CINEMAS_INFO = gql`
 
 export const GET_ONE_CINEMA_INFO = gql`
   query getOneCinemaInfo($id: ID!) {
-      cinema: getOneCinema(id: $id){
-     ...cinemaInfo
-     }
+    cinema: getOneCinema(id: $id) {
+      ...cinemaInfo
+    }
   }
   ${CINEMA_INFO_FRAGMENT}
 `
