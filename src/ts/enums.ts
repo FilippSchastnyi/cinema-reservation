@@ -14,3 +14,8 @@ export enum CinemaVariant {
   GOLDEN_SCREEN = 'GOLDEN_SCREEN',
   SHOW_TIME = 'SHOW_TIME',
 }
+
+export enum SeatStatusVariant {
+  STANDARD = 'STANDARD',
+  VIP = 'VIP'
+}

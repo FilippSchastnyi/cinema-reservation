@@ -1,4 +1,4 @@
-import { CinemaVariant } from '@src/ts/enums'
+import {CinemaVariant, SeatStatusVariant} from "@src/ts/enums"
 import {ApolloError} from "@apollo/client"
 
 export type ProcessType = {
@@ -71,28 +71,41 @@ export type HallType = {
   schedule: ShowTimeType[]
 }
 
-export type HallDataType = {
-  cinemaName: string,
-  halls: HallType[]
+type BookingSchemaType = {
+  row: number
+  seats: [number]
 }
 
-export type ScheduleType = {
-  id: string
-  image: string
-  name: string
-  genres: string[]
+export type SessionType = {
+  hallName: string
+  hall : {
+    rowNumber: number
+    seats: SeatType[]
+  }
+  showTime: Date
+  booking: BookingSchemaType
 }
 
 export type SeatType = {
   id: string
-  image: string
+  seatNumber: number
+  status: SeatStatusVariant
+  isBusy: boolean
+}
+
+type GoodsType = {
   name: string
-  genres: string[]
+  price: number
+  count?: number
+}
+
+type TicketType = {
+  price: number
+  status: SeatStatusVariant
 }
 
 export type StoreType = {
   id: string
-  image: string
-  name: string
-  genres: string[]
+  goods: GoodsType
+  tickets: TicketType
 }
