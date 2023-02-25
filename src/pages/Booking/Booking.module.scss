@@ -1,15 +1,11 @@
+@import "@css/config/colors.scss";
+
 .container{
-
-}
-
-.header{
-
-}
-
-.banner{
-
+  box-shadow: $box-shadow;
+  border-radius: 8px;
 }
 
 .booking{
-
+  display: flex;
+  justify-content: space-between;
 }

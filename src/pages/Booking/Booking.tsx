@@ -3,7 +3,12 @@ import {useParams} from "react-router-dom"
 import {useQuery} from "@apollo/client"
 import {GET_CINEMA_STORE} from "@src/graphQL/query/cinema"
 import {GET_SESSION_DETAILS} from "@src/graphQL/query/session"
+import CinemaHall from "@pages/Booking/CinemaHall/CinemaHall"
+import SessionInfoBanner from "@pages/Booking/SessionInfoBanner/SessionInfoBanner"
+import CinemaStore from "@pages/Booking/CinemaStore/CinemaStore"
+import CinemaShoppingCart from "@pages/Booking/CinemaShoppingCart/CinemaShoppingCart"
 import BookingCss from "./Booking.module.scss"
+import {CinemaStoreType} from "@src/ts/types"
 
 const Booking = () => {
   const {
@@ -39,6 +44,7 @@ const Booking = () => {
   if (!data || !sessionDetailsData) return null
 
   const {sessionData} = sessionDetailsData
+  const {cinemaStoreData} : {cinemaStoreData: CinemaStoreType} = data
 
   return (
     <Section hasContainer>
@@ -46,13 +52,12 @@ const Booking = () => {
           {sessionData.hallName}
         </h3>
       <div className={BookingCss.container}>
-        <div className={BookingCss.banner}>
-          {/* MovieInfoBanner -> Film/Cinema */}
-        </div>
+          <SessionInfoBanner
+          />
         <div className={BookingCss.booking}>
-          {/*         -> Store -> cinema.store
-        Hall -> booking
-        OrderCalculation -> */}
+          <CinemaStore/>
+          <CinemaHall/>
+          <CinemaShoppingCart/>
         </div>
       </div>
     </Section>
