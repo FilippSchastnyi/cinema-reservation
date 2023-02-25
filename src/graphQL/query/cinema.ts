@@ -22,7 +22,7 @@ export const GET_CINEMAS_NAMES = gql`
 
 export const GET_CINEMA_STORE = gql`
   query getOneCinemaStore($id: ID!) {
-    cinema: getOneCinema(id: $id) {
+    cinemaStoreData: getOneCinema(id: $id) {
       _id
       name
       city
