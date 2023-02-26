@@ -6,7 +6,8 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "st": "vite --host 0.0.0.0"
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",

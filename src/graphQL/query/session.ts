@@ -1,27 +1,30 @@
 import gql from 'graphql-tag'
 
 export const GET_SESSION_DETAILS = gql`
-    query GetOneSession($getOneSessionId: ID!, $getCinemaId: ID!) {
-        sessionData:getOneSession(id: $getOneSessionId) {
-            hallName
-            hall {
-                rowNumber
-                seats {
-                    seatNumber
-                    status
-                    isBusy
-                }
-
-            }
-            showTime
-            booking {
-                row
-                seats
-            }
+  query GetOneSession($sessionId: ID!, $cinemaId: ID!, $movieId: ID!) {
+    session: getOneSession(id: $sessionId) {
+      location
+      schema {
+        rowNumber
+        seats {
+          status
+          seatNumber
+          isBusy
         }
-        film: getOneCinema(id: $getCinemaId){
-            name
-            city
-        }
+      }
+      showTime
+      booking {
+        row
+        seats
+      }
     }
+    cinema: getOneCinema(id: $cinemaId) {
+      name
+      city
+    }
+    movie: getOneFilm(id: $movieId) {
+      name
+      image
+    }
+  }
 `

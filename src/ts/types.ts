@@ -77,8 +77,8 @@ type BookingSchemaType = {
 }
 
 export type SessionType = {
-  hallName: string
-  hall : {
+  location: string
+  schema : {
     rowNumber: number
     seats: SeatType[]
   }
