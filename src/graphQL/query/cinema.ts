@@ -25,7 +25,6 @@ export const GET_CINEMA_STORE = gql`
     cinemaStoreData: getOneCinema(id: $id) {
       _id
       name
-      city
       store{
           goods {
               name

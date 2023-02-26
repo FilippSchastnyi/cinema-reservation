@@ -1,9 +1,14 @@
 import React, { ChangeEvent } from 'react'
 import { useMutation } from '@apollo/client'
 import { CREATE_FILM } from '@src/graphQL/mutations/film'
+import {CREATE_GOODS} from "@src/graphQL/mutations/store"
+import InlineSVG from "react-inlinesvg"
+import Logo from "../../assets/cola.svg"
 
 const Secret = () => {
   const [createFilm] = useMutation(CREATE_FILM)
+  const [addGoods] = useMutation(CREATE_GOODS)
+
   const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return
     const image = event.target.files[0]
@@ -30,9 +35,30 @@ const Secret = () => {
     })
   }
 
+  const onGoodsFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) return
+    const image = event.target.files[0]
+    addGoods({
+      variables: {
+        input: {
+          storeId: "63f7476f3301469f937058f8",
+          name: 'Cokesss',
+          price: 4.7,
+          image,
+        },
+      },
+    }).then((data) => {
+      console.log(data)
+    })
+  }
+
   return (
     <div className="section">
+      CREATE MOVIE
       <input type="file" onChange={onFileChange} />
+      CREATE GOODS
+      <input type="file" onChange={onGoodsFileChange} />
+      <InlineSVG src="http://localhost:5000/img/goods/popcorn.svg" width={200}/>
     </div>
   )
 }

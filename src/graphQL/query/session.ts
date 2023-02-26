@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const GET_SESSION_DETAILS = gql`
-    query GetOneSession($getOneSessionId: ID!) {
+    query GetOneSession($getOneSessionId: ID!, $getCinemaId: ID!) {
         sessionData:getOneSession(id: $getOneSessionId) {
             hallName
             hall {
@@ -18,6 +18,10 @@ export const GET_SESSION_DETAILS = gql`
                 row
                 seats
             }
+        }
+        film: getOneCinema(id: $getCinemaId){
+            name
+            city
         }
     }
 `

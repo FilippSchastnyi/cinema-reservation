@@ -8,7 +8,6 @@ import SessionInfoBanner from "@pages/Booking/SessionInfoBanner/SessionInfoBanne
 import CinemaStore from "@pages/Booking/CinemaStore/CinemaStore"
 import CinemaShoppingCart from "@pages/Booking/CinemaShoppingCart/CinemaShoppingCart"
 import BookingCss from "./Booking.module.scss"
-import {CinemaStoreType} from "@src/ts/types"
 
 const Booking = () => {
   const {
@@ -32,7 +31,8 @@ const Booking = () => {
     data: sessionDetailsData
   } = useQuery(GET_SESSION_DETAILS, {
     variables: {
-      getOneSessionId: sessionId
+      getOneSessionId: sessionId,
+      getCinemaId: cinemaId
     }
   })
 
@@ -44,7 +44,7 @@ const Booking = () => {
   if (!data || !sessionDetailsData) return null
 
   const {sessionData} = sessionDetailsData
-  const {cinemaStoreData} : {cinemaStoreData: CinemaStoreType} = data
+  console.log(sessionDetailsData)
 
   return (
     <Section hasContainer>
@@ -52,8 +52,8 @@ const Booking = () => {
           {sessionData.hallName}
         </h3>
       <div className={BookingCss.container}>
-          <SessionInfoBanner
-          />
+{/*           <SessionInfoBanner
+          /> */}
         <div className={BookingCss.booking}>
           <CinemaStore/>
           <CinemaHall/>

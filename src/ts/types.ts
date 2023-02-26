@@ -106,13 +106,7 @@ type TicketType = {
 
 export type StoreType = {
   id: string
+  name: string
   goods: GoodsType
   tickets: TicketType
-}
-
-export type CinemaStoreType = {
-  id: string
-  name: string
-  city: string
-  store: StoreType
 }
