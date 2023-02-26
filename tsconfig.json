@@ -26,6 +26,6 @@
       "@css-media/*": ["./src/css/mixins/media-queries.scss"],
     },
   },
-  "include": ["vite.config.ts", "src", ".eslintrc.json", "codegen.ts"],
+  "include": ["custom.d.ts","vite.config.ts", "src", ".eslintrc.json", "codegen.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

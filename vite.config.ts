@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import path from 'node:path';
+import viteSvgr from "vite-plugin-svgr"
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,5 +15,7 @@ export default defineConfig({
       '@css': path.resolve(__dirname, './src/css'),
     },
   },
-  plugins: [react()],
+  plugins: [react(),
+    viteSvgr()
+  ],
 });
