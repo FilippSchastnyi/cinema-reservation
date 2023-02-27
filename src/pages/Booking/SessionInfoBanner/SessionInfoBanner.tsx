@@ -22,9 +22,9 @@ const SessionInfoBanner = ({
         </div>
       </div>
       <div className={SessionInfoBannerCss.right}>
+        <span>{movieName}</span>
         <span>{showTime.toString()}</span>
-        <span>{showTime.toString()}</span>
-        <span>{showTime.toString()}</span>
+        <span>{location}</span>
       </div>
     </div>
   )

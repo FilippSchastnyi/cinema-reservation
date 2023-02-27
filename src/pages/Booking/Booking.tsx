@@ -1,13 +1,12 @@
 import Section from '@components/Section/Section'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { GET_CINEMA_STORE } from '@src/graphQL/query/cinema'
 import { GET_SESSION_DETAILS } from '@src/graphQL/query/session'
 import CinemaHall from '@pages/Booking/CinemaHall/CinemaHall'
 import SessionInfoBanner from '@pages/Booking/SessionInfoBanner/SessionInfoBanner'
 import CinemaStore from '@pages/Booking/CinemaStore/CinemaStore'
 import CinemaShoppingCart from '@pages/Booking/CinemaShoppingCart/CinemaShoppingCart'
-import { SessionType } from '@src/ts/types'
+import {SessionType, StoreType} from "@src/ts/types"
 import BookingCss from './Booking.module.scss'
 
 type SessionDetailsType = {
@@ -25,7 +24,7 @@ type SessionDetailsType = {
 const Booking = () => {
   const { cinemaId, sessionId, movieId } = useParams()
 
-  const { loading, error, data } = useQuery<SessionDetailsType>(GET_SESSION_DETAILS, {
+  const { loading: sessionLoading, error: sessionError, data: sessionData } = useQuery<SessionDetailsType>(GET_SESSION_DETAILS, {
     variables: {
       sessionId,
       cinemaId,
@@ -33,25 +32,25 @@ const Booking = () => {
     },
   })
 
-  if (error) {
-    console.log(error)
+  if (sessionError) {
+    console.log(sessionError)
   }
-  if (loading) return <p> loading ...</p>
+  if (sessionLoading) return <p> loading ...</p>
 
-  if (!data) return null
+  if (!sessionData) return null
 
   return (
     <Section hasContainer>
-      <h3 className={BookingCss.header}>{data.session.location}</h3>
+      <h3 className={BookingCss.header}>{sessionData.session.location}</h3>
       <div className={BookingCss.container}>
         <SessionInfoBanner
-        movieName={data.movie.name}
-        location={data.session.location}
-        imageURL={data.movie.image}
-        showTime={data.session.showTime}
+        movieName={sessionData.movie.name}
+        location={sessionData.session.location}
+        imageURL={sessionData.movie.image}
+        showTime={sessionData.session.showTime}
         />
         <div className={BookingCss.booking}>
-          <CinemaStore />
+          <CinemaStore cinemaId = {cinemaId as string}/>
           <CinemaHall />
           <CinemaShoppingCart />
         </div>

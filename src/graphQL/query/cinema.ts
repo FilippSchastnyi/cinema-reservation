@@ -21,18 +21,20 @@ export const GET_CINEMAS_NAMES = gql`
 `
 
 export const GET_CINEMA_STORE = gql`
-  query getOneCinemaStore($id: ID!) {
-    cinemaStoreData: getOneCinema(id: $id) {
+  query getCinemaStore($id: ID!) {
+    storeData: getOneCinema(id: $id) {
       _id
       name
       store{
           goods {
+              id:_id
               name
+              image
               price
               count
           }
           tickets {
-              type
+              status
               price
           }
       }
