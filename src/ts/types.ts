@@ -77,8 +77,8 @@ type BookingSchemaType = {
 }
 
 export type SessionType = {
-  hallName: string
-  hall : {
+  location: string
+  schema : {
     rowNumber: number
     seats: SeatType[]
   }
@@ -93,10 +93,12 @@ export type SeatType = {
   isBusy: boolean
 }
 
-type GoodsType = {
+export type GoodsType = {
+  id?: string
   name: string
   price: number
   count?: number
+  image: string
 }
 
 type TicketType = {
@@ -107,6 +109,6 @@ type TicketType = {
 export type StoreType = {
   id: string
   name: string
-  goods: GoodsType
+  goods: [GoodsType]
   tickets: TicketType
 }
