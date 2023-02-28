@@ -89,7 +89,7 @@ export type SessionType = {
 }
 
 export type SeatType = {
-  id: string
+  id?: string
   seatNumber: number
   status: SeatStatusVariant
   isBusy: boolean

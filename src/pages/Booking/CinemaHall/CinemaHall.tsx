@@ -1,4 +1,5 @@
 import { SchemaOptionType } from '@src/ts/types'
+import Seat from '@pages/Booking/CinemaHall/Seat/Seat'
 import CinemaHallCss from './CinemaHall.module.scss'
 
 const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
@@ -12,7 +13,15 @@ const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
             <li key={row.rowNumber}>
               <ul className={CinemaHallCss.row}>
                 {row.seats.map((seat) => {
-                  return <li key={seat.id}>{seat.seatNumber}</li>
+                  return (
+                    <li key={seat.id}>
+                      <Seat
+                        seatNumber={seat.seatNumber}
+                        status={seat.status}
+                        isBusy={seat.isBusy}
+                      />
+                    </li>
+                  )
                 })}
               </ul>
             </li>
