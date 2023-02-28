@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import InputCss from './Input.module.scss'
 
-interface IInputProps {
+interface InputProps {
   type?: string
   label?: string
   name?: string
@@ -15,7 +15,7 @@ const Input = ({
   name = '',
   register,
   errors,
-}: IInputProps) => {
+}: InputProps) => {
   const idGen = useId()
   const inputType = type
   return (

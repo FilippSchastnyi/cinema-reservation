@@ -38,6 +38,7 @@ const Booking = () => {
   if (sessionLoading) return <p> loading ...</p>
 
   if (!sessionData) return null
+  console.log(sessionData.session.schema)
 
   return (
     <Section hasContainer>
@@ -51,7 +52,7 @@ const Booking = () => {
         />
         <div className={BookingCss.booking}>
           <CinemaStore cinemaId = {cinemaId as string}/>
-          <CinemaHall />
+          <CinemaHall schema={sessionData.session.schema}/>
           <CinemaShoppingCart />
         </div>
       </div>

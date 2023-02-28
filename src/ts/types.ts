@@ -76,18 +76,20 @@ type BookingSchemaType = {
   seats: [number]
 }
 
+export type SchemaOptionType = {
+  rowNumber: number
+  seats: SeatType[]
+}
+
 export type SessionType = {
   location: string
-  schema : {
-    rowNumber: number
-    seats: SeatType[]
-  }
+  schema : SchemaOptionType[]
   showTime: Date
   booking: BookingSchemaType
 }
 
 export type SeatType = {
-  id: string
+  id?: string
   seatNumber: number
   status: SeatStatusVariant
   isBusy: boolean

@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoodsType } from '@src/ts/types'
 import InlineSVG from "react-inlinesvg"
+import Numeric from "@ui/Numeric/Numeric"
 import GoodsCardCss from './GoodsCard.module.scss'
 
 const GoodsCard = ({ name, image, price, count }: GoodsType) => {
@@ -13,6 +14,7 @@ const GoodsCard = ({ name, image, price, count }: GoodsType) => {
       <span className="text">{name}</span>
       <span className="text">${price}</span>
     </p>
+    <Numeric/>
   </div>
 }
 
