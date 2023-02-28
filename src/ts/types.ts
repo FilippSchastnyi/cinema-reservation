@@ -76,12 +76,14 @@ type BookingSchemaType = {
   seats: [number]
 }
 
+export type SchemaOptionType = {
+  rowNumber: number
+  seats: SeatType[]
+}
+
 export type SessionType = {
   location: string
-  schema : {
-    rowNumber: number
-    seats: SeatType[]
-  }
+  schema : SchemaOptionType[]
   showTime: Date
   booking: BookingSchemaType
 }

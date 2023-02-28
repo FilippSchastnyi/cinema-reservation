@@ -7,6 +7,7 @@ export const GET_SESSION_DETAILS = gql`
       schema {
         rowNumber
         seats {
+          id:_id
           status
           seatNumber
           isBusy

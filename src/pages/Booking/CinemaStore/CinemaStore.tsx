@@ -18,13 +18,14 @@ const CinemaStore = ({cinemaId}: {cinemaId: string}) => {
 
   if (!data) return null
   const storeData:StoreType = data.storeData.store
-  console.log(storeData)
   return (
-    <div>
+    <div className={CinemaStoreCss.track}>
       {storeData.name}
       <ul className={CinemaStoreCss.list}>
         {storeData.goods.map(item => (
-          <GoodsCard key={item.id} name={item.name} price={item.price} image={item.image}/>
+          <li key={item.id} className={CinemaStoreCss.item}>
+          <GoodsCard name={item.name} price={item.price} image={item.image}/>
+          </li>
         ))}
       </ul>
     </div>

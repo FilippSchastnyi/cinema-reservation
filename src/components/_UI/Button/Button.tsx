@@ -14,12 +14,12 @@ interface ButtonProps {
    * The size of button to be used
    * one of 'lg' | 'sm' | 'md | w100'
    */
-  size?: 'lg' | 'sm' | 'md' | 'w100'
+  size?: 'lg' | 'sm' | 'md' | 'w100' | 'auto'
   /**
    * The type of button to be used
    * one of 'outlined' | 'text' | 'contained'
    */
-  variant?: 'outlined' | 'text' | 'contained'
+  variant?: 'outlined' | 'text' | 'contained' | 'link'
   /**
    * Checks if the button should be disabled
    */
