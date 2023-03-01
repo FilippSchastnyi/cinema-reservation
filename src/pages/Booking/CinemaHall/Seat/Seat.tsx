@@ -1,7 +1,7 @@
-import SeatCss from "./Seat.module.scss"
 import InlineSVG from "react-inlinesvg"
 import SeatSVG from "@src/assets/images/svg/seat.svg"
 import {SeatType} from "@src/ts/types"
+import SeatCss from "./Seat.module.scss"
 
 const Seat = ({seatNumber, status, isBusy}: SeatType) => {
   return (

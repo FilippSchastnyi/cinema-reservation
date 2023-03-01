@@ -32,7 +32,7 @@ const Numeric = () => {
 
   return (
     <div className={NumericCss.container}>
-      <Button size="auto" variant="link" onClick={()=>{onHandleButtonClick(OperationVariant.MINUS)}}>
+      <Button size="auto" variant="link" onClick={()=>{onHandleButtonClick(OperationVariant.MINUS)}} disabled={value <= 0}>
         <InlineSVG
           title="Decrease value"
           src={minus}

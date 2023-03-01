@@ -1,5 +1,6 @@
 import Image from '@ui/Image/Image'
 import SessionInfoBannerCss from './SessionInfoBanner.module.scss'
+import useDateFormatter from '@src/hooks/useDateFormatter'
 
 type SessionInfoBannerProps = {
   movieName: string
@@ -14,6 +15,17 @@ const SessionInfoBanner = ({
   movieName,
   showTime,
 }: SessionInfoBannerProps) => {
+  const { formatDateToDDMMYY, formatDateToHHMMSS } = useDateFormatter()
+
+  const getConvertedShowTime = () => {
+    const time = new Date(showTime)
+
+    const formattedDate = formatDateToDDMMYY(time)
+    const formattedTime = formatDateToHHMMSS(time)
+
+    return `${formattedDate.day}.${formattedDate.month}.${formattedDate.year}, ${formattedTime.hours}:${formattedTime.minutes}`
+  }
+
   return (
     <div className={SessionInfoBannerCss.container}>
       <div className={SessionInfoBannerCss.left}>
@@ -23,7 +35,7 @@ const SessionInfoBanner = ({
       </div>
       <div className={SessionInfoBannerCss.right}>
         <span>{movieName}</span>
-        <span>{showTime.toString()}</span>
+        <span>{getConvertedShowTime()}</span>
         <span>{location}</span>
       </div>
     </div>
