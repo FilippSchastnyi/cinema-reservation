@@ -10,8 +10,9 @@ const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
       <ul className={CinemaHallCss.schema}>
         {schema.map((row) => {
           return (
-            <li key={row.rowNumber}>
-              <ul className={CinemaHallCss.row}>
+            <li key={row.rowNumber} className={CinemaHallCss.row}>
+              <span className={CinemaHallCss.rowNumber} >{schema.length - row.rowNumber + 1}</span>
+              <ul className={CinemaHallCss.seats}>
                 {row.seats.map((seat) => {
                   return (
                     <li key={seat.id}>
