@@ -4,10 +4,10 @@ import InlineSVG from "react-inlinesvg"
 import Numeric from "@ui/Numeric/Numeric"
 import GoodsCardCss from './GoodsCard.module.scss'
 
-const GoodsCard = ({ name, image, price, count }: GoodsType) => {
+const GoodsCard = ({ id, name, image, price, count }: GoodsType) => {
   return <div className={GoodsCardCss.container}>
     <div className={GoodsCardCss.image}>
-      <InlineSVG width='100%' height='100%' src={image}/>
+      <InlineSVG width='100%' height='100%' src={image as string}/>
     </div>
 
     <p className={GoodsCardCss.content}>
