@@ -1,9 +1,8 @@
-import { SchemaOptionType } from '@src/ts/types'
+import {SchemaOptionType} from "@src/ts/types"
 import Seat from '@pages/Booking/CinemaHall/Seat/Seat'
 import CinemaHallCss from './CinemaHall.module.scss'
 
 const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
-  console.log(schema)
   return (
     <div className={CinemaHallCss.container}>
       <h3 className="title">Cinema Hall</h3>
@@ -20,6 +19,8 @@ const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
                         seatNumber={seat.seatNumber}
                         status={seat.status}
                         isBusy={seat.isBusy}
+                        id={seat.id}
+                        row={row.rowNumber}
                       />
                     </li>
                   )

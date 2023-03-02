@@ -89,23 +89,27 @@ export type SessionType = {
 }
 
 export type SeatType = {
-  id?: string
+  id: string
+  row?: number
   seatNumber: number
   status: SeatStatusVariant
   isBusy: boolean
 }
 
 export type GoodsType = {
-  id?: string
+  id: string
   name: string
-  price: number
+  price?: number
   count?: number
-  image: string
+  image?: string
 }
 
-type TicketType = {
-  price: number
+export type TicketType = {
+  id:string
+  seatNumber?: number
+  row?: number
   status: SeatStatusVariant
+  price?: number
 }
 
 export type StoreType = {
