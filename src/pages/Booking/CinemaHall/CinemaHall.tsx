@@ -1,8 +1,13 @@
-import {SchemaOptionType} from "@src/ts/types"
+import {SchemaOptionType, TicketType} from "@src/ts/types"
 import Seat from '@pages/Booking/CinemaHall/Seat/Seat'
 import CinemaHallCss from './CinemaHall.module.scss'
 
-const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
+type CinemaHallProps = {
+  tickets: TicketType[]
+  schema: SchemaOptionType[]
+}
+
+const CinemaHall = ({ schema, tickets }: CinemaHallProps) => {
   return (
     <div className={CinemaHallCss.container}>
       <h3 className="title">Cinema Hall</h3>
@@ -10,7 +15,9 @@ const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
         {schema.map((row) => {
           return (
             <li key={row.rowNumber} className={CinemaHallCss.row}>
-              <span className={CinemaHallCss.rowNumber} >{schema.length - row.rowNumber + 1}</span>
+              <span className={CinemaHallCss.rowNumber}>
+                {schema.length - row.rowNumber + 1}
+              </span>
               <ul className={CinemaHallCss.seats}>
                 {row.seats.map((seat) => {
                   return (
@@ -21,6 +28,7 @@ const CinemaHall = ({ schema }: { schema: SchemaOptionType[] }) => {
                         isBusy={seat.isBusy}
                         id={seat.id}
                         row={row.rowNumber}
+                        price={}
                       />
                     </li>
                   )
