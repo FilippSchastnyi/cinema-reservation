@@ -1,30 +1,21 @@
-import {useQuery} from "@apollo/client"
-import {StoreType} from "@src/ts/types"
-import {GET_CINEMA_STORE} from "@src/graphQL/query/cinema"
+import {GoodsType} from "@src/ts/types"
 import GoodsCard from "@pages/Booking/CinemaStore/GoodsCard/GoodsCard"
 import CinemaStoreCss from "./CinemaStore.module.scss"
 
-const CinemaStore = ({cinemaId}: {cinemaId: string}) => {
-  const { loading, error, data } = useQuery(GET_CINEMA_STORE, {
-    variables: {
-      id: cinemaId,
-    },
-  })
+type CinemaStoreType = {
+  name: string
+  goodsList: GoodsType[]
+}
 
-  if (error) {
-    console.log(error)
-  }
-  if (loading) return <p> loading ...</p>
+const CinemaStore = ({goodsList, name}: CinemaStoreType) => {
 
-  if (!data) return null
-  const storeData:StoreType = data.storeData.store
   return (
     <div className={CinemaStoreCss.track}>
-      {storeData.name}
+      {name}
       <ul className={CinemaStoreCss.list}>
-        {storeData.goods.map(item => (
-          <li key={item.id} className={CinemaStoreCss.item}>
-          <GoodsCard id={item.id} name={item.name} price={item.price} image={item.image}/>
+        {goodsList.map(goods => (
+          <li key={goods.id} className={CinemaStoreCss.item}>
+          <GoodsCard id={goods.id} name={goods.name} price={goods.price} image={goods.image}/>
           </li>
         ))}
       </ul>

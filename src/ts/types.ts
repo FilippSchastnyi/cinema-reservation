@@ -99,22 +99,19 @@ export type SeatType = {
 export type GoodsType = {
   id: string
   name: string
-  price?: number
+  price: number
   count?: number
-  image?: string
+  image: string
 }
 
 export type TicketType = {
-  id:string
-  seatNumber?: number
-  row?: number
   status: SeatStatusVariant
-  price?: number
+  price: number
 }
 
 export type StoreType = {
   id: string
   name: string
-  goods: [GoodsType]
-  tickets: TicketType
+  goods: GoodsType[]
+  tickets: TicketType[]
 }
