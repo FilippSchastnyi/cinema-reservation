@@ -61,7 +61,7 @@ export type CinemaType = {
 
 type ShowTimeType = {
   id: string
-  startTime: Date
+  showTime: Date
 }
 
 export type HallType = {

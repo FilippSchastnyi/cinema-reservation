@@ -11,6 +11,7 @@ export const GET_SESSION_DETAILS = gql`
           status
           seatNumber
           isBusy
+          price
         }
       }
       showTime

@@ -28,7 +28,6 @@ const CinemaHall = ({ schema, tickets }: CinemaHallProps) => {
                         isBusy={seat.isBusy}
                         id={seat.id}
                         row={row.rowNumber}
-                        price={}
                       />
                     </li>
                   )
