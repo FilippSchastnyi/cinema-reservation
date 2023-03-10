@@ -26,7 +26,7 @@ const SessionTimeSelection = ({
             </div>
             <div className={SessionTimeSelectionCss.right}>
               {hall.schedule.map((showTime) => {
-                const showDateFormat = new Date(showTime.startTime)
+                const showDateFormat = new Date(showTime.showTime)
                 const showDayTime = formatDateToHHMMSS(showDateFormat)
                 return (
                   <Button
