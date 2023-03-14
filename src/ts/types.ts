@@ -94,6 +94,7 @@ export type SeatType = {
   seatNumber: number
   status: SeatStatusVariant
   isBusy: boolean
+  price: number
 }
 
 export type GoodsType = {
@@ -104,14 +105,9 @@ export type GoodsType = {
   image: string
 }
 
-export type TicketType = {
-  status: SeatStatusVariant
-  price: number
-}
-
 export type StoreType = {
   id: string
   name: string
   goods: GoodsType[]
-  tickets: TicketType[]
+  tickets: SeatType[]
 }

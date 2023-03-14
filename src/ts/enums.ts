@@ -19,3 +19,7 @@ export enum SeatStatusVariant {
   STANDARD = 'STANDARD',
   VIP = 'VIP'
 }
+
+export enum GoodsTypeVariant {
+  FOOD = 'FOOD'
+}

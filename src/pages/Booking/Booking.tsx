@@ -8,7 +8,7 @@ import CinemaStore from '@pages/Booking/CinemaStore/CinemaStore'
 import CinemaShoppingCart from '@pages/Booking/CinemaShoppingCart/CinemaShoppingCart'
 import { SessionType, StoreType } from '@src/ts/types'
 import BookingCss from './Booking.module.scss'
-import {GET_CINEMA_STORE} from "@src/graphQL/query/cinema"
+import { GET_CINEMA_STORE } from '@src/graphQL/query/cinema'
 
 type SessionDetailsType = {
   session: SessionType
@@ -37,7 +37,11 @@ const Booking = () => {
     },
   })
 
-  const { loading: cinemaStoreLoading, error:cinemaStoreError, data: cinemaStoreData } = useQuery(GET_CINEMA_STORE, {
+  const {
+    loading: cinemaStoreLoading,
+    error: cinemaStoreError,
+    data: cinemaStoreData,
+  } = useQuery(GET_CINEMA_STORE, {
     variables: {
       id: cinemaId,
     },
@@ -57,7 +61,7 @@ const Booking = () => {
 
   if (!sessionData) return null
 
-  const storeData:StoreType = cinemaStoreData.cinemaStore.store
+  const storeData: StoreType = cinemaStoreData.cinemaStore.store
 
   return (
     <Section hasContainer>
@@ -70,13 +74,8 @@ const Booking = () => {
           showTime={sessionData.session.showTime}
         />
         <div className={BookingCss.booking}>
-          <CinemaStore
-            name = {storeData.name}
-            goodsList={storeData.goods} />
-          <CinemaHall
-            schema={sessionData.session.schema}
-            tickets = {storeData.tickets}
-          />
+          <CinemaStore name={storeData.name} goodsList={storeData.goods} />
+          <CinemaHall schema={sessionData.session.schema} />
           <CinemaShoppingCart />
         </div>
       </div>

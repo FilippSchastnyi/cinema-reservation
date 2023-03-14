@@ -48,6 +48,27 @@
     font-size: 16px;
   }
 
+  &--10{
+    font-size: 10px;
+  }
+  &--12{
+    font-size: 12px;
+  }
+  &--14{
+    font-size: 14px;
+  }
+  &--16{
+    font-size: 16px;
+  }
+  &--18{
+    font-size: 18px;
+  }
+  &--20{
+    font-size: 20px;
+  }
+  &--22{
+    font-size: 22px;
+  }
   &--24{
     font-size: 24px;
   }
@@ -58,6 +79,14 @@
 
   &--blue-80 {
     color: $color-blue-80;
+  }
+
+  &--green {
+    color: $color-light-green;
+  }
+
+  &--grey {
+    color: $color-grey-text;
   }
 }
 

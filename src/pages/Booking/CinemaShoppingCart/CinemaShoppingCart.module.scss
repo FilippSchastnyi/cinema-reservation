@@ -1,6 +1,7 @@
 @import "@css/config/colors.scss";
 
 .container {
-  padding: 10px;
+  flex: 0 0 200px;
+  padding: 0 10px;
   border-left: 1px solid $color-grey-60;
 }
