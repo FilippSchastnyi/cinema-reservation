@@ -1,3 +1,10 @@
+@import "@css/config/colors.scss";
+
+.container{
+  flex: 1 1 1px;
+  padding: 0 20px;
+}
+
 .schema {
   padding: 0 20px;
   display: flex;
@@ -28,7 +35,10 @@
 
 .rowNumber {
   position: absolute;
-  color: red;
+  font-weight: 600;
+  color: $color-black;
+  font-size: 20px;
+  user-select: none;
   left: 0;
 }
 

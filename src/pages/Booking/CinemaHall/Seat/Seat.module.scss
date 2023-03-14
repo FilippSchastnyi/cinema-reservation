@@ -7,13 +7,26 @@
   align-items: center;
   justify-content: center;
   transition: all 0.1s ease-in-out;
+  &[disabled] {
+    pointer-events: none;
+    user-select: none;
+    svg{
+      fill: $color-grey-60;
+      pointer-events: none;
+      user-select: none;
+    }
+    .seatNumber{
+      color: $color-grey-60;
+    }
+  }
 }
 
 .seatNumber{
+  font-weight: 600;
   font-size: 14px;
   text-align: center;
   position: absolute;
-  color: red;
+  color: $color-black;
   left: 50%;
   top: 10%;
   transform: translateX(-50%);

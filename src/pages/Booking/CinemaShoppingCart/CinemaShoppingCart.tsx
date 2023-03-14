@@ -1,22 +1,33 @@
 import { useTypedSelector } from '@src/hooks/redux'
 import CartItem from '@pages/Booking/CinemaShoppingCart/CartItem/CartItem'
+import {GoodsType, SeatType,} from "@src/ts/types"
 import CinemaShoppingCartCss from './CinemaShoppingCart.module.scss'
-import { GoodsType, TicketType } from '@src/ts/types'
 
 const CinemaShoppingCart = () => {
   const shopStore = useTypedSelector((state) => state.shopCart)
+
   return (
-    <div>
+    <div className={CinemaShoppingCartCss.container}>
       SHOP
-      <ul className={CinemaShoppingCartCss.container}>
-        {shopStore.map((item: GoodsType | TicketType | null) => {
+      <ul className={CinemaShoppingCartCss.track}>
+        {shopStore.map((item: GoodsType | SeatType | null) => {
           if (!item) return null
-          return (
-            <li key={item.id}>
-              <CartItem
-              />
-            </li>
-          )
+          return ('status' in item)
+            ?(
+              <li key={item.id}>
+                <CartItem
+                  price={item.price}
+                  status={item.status}
+                  title={`Row ${  item.row  }, Seat ${  item.seatNumber}`}
+                />
+              </li>
+            )
+            :(
+              <li key={item.id}>
+                <CartItem
+                />
+              </li>
+            )
         })}
       </ul>
     </div>
