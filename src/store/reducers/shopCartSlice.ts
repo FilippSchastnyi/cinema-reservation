@@ -10,10 +10,24 @@ export const shopCartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: ActionPayloadType) => {
+      const newItemIndex = state.findIndex(
+        (item) => item.id === action.payload.id
+      )
       if ('status' in action.payload) {
-        const newItemIndex = state.findIndex((item) => item.id === action.payload.id)
-        if (newItemIndex !== -1){
+        if (newItemIndex !== -1) {
           state.splice(newItemIndex, 1)
+        } else {
+          state.push(action.payload)
+        }
+      }
+      else {
+        if (newItemIndex !== -1){
+          Object.values(state).forEach((item:any) => {
+            if (item.id === action.payload.id){
+              item.count += 1;
+              item.price += action.payload.price
+            }
+          })
         }
         else {
           state.push(action.payload)
