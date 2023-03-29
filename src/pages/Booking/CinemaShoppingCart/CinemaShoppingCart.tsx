@@ -25,6 +25,7 @@ const CinemaShoppingCart = () => {
             :(
               <li key={item.id}>
                 <CartItem
+                  price={item.price}
                 />
               </li>
             )

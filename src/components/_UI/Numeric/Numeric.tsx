@@ -7,32 +7,46 @@ import NumericCss from './Numeric.module.scss'
 
 enum OperationVariant {
   PLUS,
-  MINUS
+  MINUS,
 }
 
-const Numeric = () => {
+type NumericProps = {
+  onIncrementNumber: (value: number) => void
+  onDecrementNumber: (value: number) => void
+}
+
+const Numeric = ({ onIncrementNumber, onDecrementNumber }: NumericProps) => {
   const [value, setValue] = useState(0)
 
   const onHandleButtonClick = (variant: OperationVariant): void => {
-
     switch (variant) {
       case OperationVariant.PLUS: {
         setValue(value + 1)
+        onIncrementNumber(value)
         break
       }
       case OperationVariant.MINUS: {
         if (value > 0) {
           setValue(value - 1)
+          onDecrementNumber(value)
         }
         break
       }
-    default: setValue(value)
+      default:
+        setValue(value)
     }
   }
 
   return (
     <div className={NumericCss.container}>
-      <Button size="auto" variant="link" onClick={()=>{onHandleButtonClick(OperationVariant.MINUS)}} disabled={value <= 0}>
+      <Button
+        size="auto"
+        variant="link"
+        onClick={() => {
+          onHandleButtonClick(OperationVariant.MINUS)
+        }}
+        disabled={value <= 0}
+      >
         <InlineSVG
           title="Decrease value"
           src={minus}
@@ -47,7 +61,13 @@ const Numeric = () => {
         value={value}
         disabled
       />
-      <Button size="auto" variant="link" onClick={()=>{onHandleButtonClick(OperationVariant.PLUS)}}>
+      <Button
+        size="auto"
+        variant="link"
+        onClick={() => {
+          onHandleButtonClick(OperationVariant.PLUS)
+        }}
+      >
         <InlineSVG
           title="Increase value"
           src={plus}
