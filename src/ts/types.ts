@@ -111,3 +111,4 @@ export type StoreType = {
   goods: GoodsType[]
   tickets: SeatType[]
 }
+

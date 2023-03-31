@@ -14,7 +14,7 @@ enum SeatColorVariant {
 
 const Seat = ({ seatNumber, status, isBusy, id, row, price }: SeatType) => {
   const isSeatSelected = useTypedSelector((state) =>
-    state.shopCart.map((seat): string => seat.id)
+    state.shopCart.cartItems.map((seat): string => seat.id)
   ).includes(id)
 
   let seatColor =
