@@ -1,7 +1,47 @@
 @import "@css/config/colors.scss";
 
 .container {
-  flex: 0 0 200px;
-  padding: 0 10px;
+  flex: 0 0 250px;
   border-left: 1px solid $color-grey-60;
+  position: relative;
+}
+
+.track{
+  max-height: calc(100% - 115px);
+  padding: 5px;
+  overflow-x: auto;
+  position: relative;
+  &::-webkit-scrollbar-track
+  {
+    border-radius: 8px;
+    background-color: #FFF;
+  }
+  &::-webkit-scrollbar
+  {
+    width: 6px;
+    background-color: #FFF;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    border-radius: 8px;
+    background-color: $color-grey-60;
+  }
+}
+
+.list > div {
+    margin-bottom: 5px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  min-height: 90px;
+  border-top: 1px solid $color-grey-60;
 }
