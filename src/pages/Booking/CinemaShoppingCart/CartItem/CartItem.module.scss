@@ -2,13 +2,14 @@
 
 .container {
   border-radius: 8px;
-  padding: 10px 15px;
-  box-shadow: $box-shadow;
-  display: flex;
-  justify-content: space-between;
-}
-
-.inner{
+  background-color: transparent;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid $color-grey-60;
+}
+
+.left{
+  display: flex;
+  justify-content: space-between;
 }

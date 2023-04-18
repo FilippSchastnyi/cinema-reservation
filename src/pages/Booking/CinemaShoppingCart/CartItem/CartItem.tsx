@@ -1,4 +1,5 @@
-import {GoodsTypeVariant, SeatStatusVariant} from "@src/ts/enums"
+import { GoodsTypeVariant, SeatStatusVariant } from '@src/ts/enums'
+import { Card } from 'antd'
 import CartItemCss from './CartItem.module.scss'
 
 type CartItemProps = {
@@ -7,34 +8,37 @@ type CartItemProps = {
   price: number
 }
 
-const CartItem = ({title, status, price }: CartItemProps): JSX.Element => {
-
-  let statusClass;
+const CartItem = ({ title, status, price }: CartItemProps): JSX.Element => {
+  let statusClass
   switch (status) {
-  case 'STANDARD':
-    statusClass = 'text--grey';
-    break;
-  case 'VIP':
-    statusClass = 'text--blue-80';
-    break;
-  case 'FOOD':
-    statusClass = 'text--green';
-    break;
-  default:
-    statusClass = '';
-    break;
+    case 'STANDARD':
+      statusClass = 'text--grey'
+      break
+    case 'VIP':
+      statusClass = 'text--blue-80'
+      break
+    case 'FOOD':
+      statusClass = 'text--green'
+      break
+    default:
+      statusClass = ''
+      break
   }
 
   return (
-    <div className={CartItemCss.container}>
-      <div className={CartItemCss.inner}>
-        <span className='text text--bold text--14'>{title}</span>
-        <span className={`text--bold ${statusClass}`}>{status}</span>
+    <Card bodyStyle={{ padding: 10, minWidth: 'inherit' }} className={CartItemCss.container}>
+      <div className={CartItemCss.left}>
+        <span className='text text--16'>{title}</span>
+        <span className={`${statusClass} text--10 text--bold`}>
+          {status}
+        </span>
       </div>
-      <span className='text text--bold'>
-        ${price}
-      </span>
-    </div>
+      <div>
+        <span className='text text--14'>
+          {price}$
+        </span>
+      </div>
+    </Card>
   )
 }
 
