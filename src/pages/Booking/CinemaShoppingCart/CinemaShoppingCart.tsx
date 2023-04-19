@@ -6,7 +6,7 @@ import {Button} from "antd"
 import CinemaShoppingCartCss from "./CinemaShoppingCart.module.scss"
 
 const CinemaShoppingCart = () => {
-  const cartItems = useTypedSelector((state) => state.shopCart.cartItems)
+  const shop = useTypedSelector((state) => state.shopCart)
 
   const renderCartItem = (item: GoodsType | SeatType) => {
     const isSeat = 'seatNumber' in item
@@ -31,14 +31,14 @@ const CinemaShoppingCart = () => {
   return (
     <div className={CinemaShoppingCartCss.container}>
       SHOP
-      <div className={CinemaShoppingCartCss.track}>
+      <div className={`${CinemaShoppingCartCss.track} scrollbar--narrow`}>
         <ul className={CinemaShoppingCartCss.list}>
-          {cartItems.map((item) => item && renderCartItem(item))}
+          {shop.cartItems.map((item) => item && renderCartItem(item))}
         </ul>
       </div>
       <div className={CinemaShoppingCartCss.footer}>
         <div>
-          Total:
+          Total: {shop.totalPrice}
         </div>
         <Button block type="primary" size="large">
           Buy

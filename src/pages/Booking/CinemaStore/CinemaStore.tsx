@@ -10,7 +10,7 @@ type CinemaStoreType = {
 const CinemaStore = ({goodsList, name}: CinemaStoreType) => {
 
   return (
-    <div className={CinemaStoreCss.track}>
+    <div className={`${CinemaStoreCss.track} scrollbar--narrow`}>
       {name}
       <ul className={CinemaStoreCss.list}>
         {goodsList.map(goods => (
