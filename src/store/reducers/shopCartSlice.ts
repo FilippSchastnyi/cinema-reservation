@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { GoodsType, SeatType } from '@src/ts/types'
+import cartItem from '@pages/Booking/CinemaShoppingCart/CartItem/CartItem'
 
 type ActionPayloadType = PayloadAction<SeatType | GoodsType>
 type ShopCartStateType = {
@@ -19,16 +20,13 @@ const findItemIndex = (
   return cartItems.findIndex((item) => item.id === itemId)
 }
 
-const addOrRemoveSeat = (state: ShopCartStateType, payload: SeatType): void => {
-  const { seatNumber, ...item } = payload
-  const itemIndex = findItemIndex(state.cartItems, item.id)
-  const isItemExist = itemIndex !== -1
+const addSeat = (state: ShopCartStateType, payload: SeatType): void => {
+  state.cartItems.push(payload)
+}
 
-  if (isItemExist) {
-    state.cartItems.splice(itemIndex, 1)
-  } else {
-    state.cartItems.push(payload)
-  }
+const removeSeat = (state: ShopCartStateType, payload: SeatType): void => {
+  const itemIndex = findItemIndex(state.cartItems, payload.id)
+  state.cartItems.splice(itemIndex, 1)
 }
 
 const addGoodsItem = (state: ShopCartStateType, payload: GoodsType): void => {
@@ -44,6 +42,19 @@ const addGoodsItem = (state: ShopCartStateType, payload: GoodsType): void => {
     cartItem.count += 1
     cartItem.price += payload.price
   }
+}
+
+const removeGoodsItem = (
+  state: ShopCartStateType,
+  payload: GoodsType
+): void => {
+  const itemIndex = findItemIndex(state.cartItems, payload.id)
+  const cartItem = state.cartItems[itemIndex]
+  cartItem.count -= 1
+  if (cartItem.count === 0) {
+    state.cartItems.splice(itemIndex, 1)
+  }
+  cartItem.price -= payload.price
 }
 
 const calculateTotal = (state: ShopCartStateType): any => {
@@ -62,19 +73,26 @@ export const shopCartSlice = createSlice({
       const hasSeatNumber = !!payload.seatNumber
 
       if (hasSeatNumber) {
-        addOrRemoveSeat(state, payload as SeatType)
+        addSeat(state, payload as SeatType)
       } else {
         addGoodsItem(state, payload as GoodsType)
       }
-
       state.totalPrice = calculateTotal(state)
     },
     removeItem: (state, action: ActionPayloadType) => {
-      const indexItem = state.cartItems.indexOf(action.payload)
-      state.cartItems.splice(indexItem, 1)
+      const { payload } = action
+      const hasSeatNumber = !!payload.seatNumber
+
+      if (hasSeatNumber) {
+        removeSeat(state, payload as SeatType)
+      } else {
+        removeGoodsItem(state, payload as GoodsType)
+      }
+      state.totalPrice = calculateTotal(state)
     },
-    reset: (state) => {
-      return state
+    resetCartItems: (state) => {
+      state.cartItems = []
+      state.totalPrice = 0
     },
   },
 })
