@@ -2,12 +2,11 @@ import React from 'react'
 import { GoodsType } from '@src/ts/types'
 import InlineSVG from "react-inlinesvg"
 import Numeric from "@ui/Numeric/Numeric"
-import GoodsCardCss from './GoodsCard.module.scss'
-import {useTypedDispatch, useTypedSelector} from "@src/hooks/redux"
+import {useTypedDispatch} from "@src/hooks/redux"
 import {shopCartSlice} from "@src/store/reducers/shopCartSlice"
+import GoodsCardCss from './GoodsCard.module.scss'
 
 const GoodsCard = ({ id, name, image, price }: GoodsType) => {
-  const store = useTypedSelector(state => state.shopCart)
   const dispatch = useTypedDispatch()
   const {addItem, removeItem} = shopCartSlice.actions
 
@@ -22,7 +21,13 @@ const GoodsCard = ({ id, name, image, price }: GoodsType) => {
   }
 
   const removeGoodsFromCart = (count: number) => {
-    dispatch(removeItem)
+    dispatch(removeItem({
+      id,
+      name,
+      price,
+      count,
+      image
+    }))
   }
 
   return <div className={GoodsCardCss.container}>

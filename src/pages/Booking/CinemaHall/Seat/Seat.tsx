@@ -27,17 +27,16 @@ const Seat = ({ seatNumber, status, isBusy, id, row, price }: SeatType) => {
   }
 
   const dispatch = useTypedDispatch()
-  const { addItem } = shopCartSlice.actions
+  const { addItem, removeItem } = shopCartSlice.actions
   const onHandleSeatClick = () => {
-    dispatch(
-      addItem({
-        id,
-        seatNumber,
-        price,
-        row,
-        status,
-      } as SeatType)
-    )
+    const seat: SeatType = {
+      id,
+      seatNumber,
+      price,
+      row,
+      status,
+    }
+    isSeatSelected ? dispatch(removeItem(seat)) : dispatch(addItem(seat))
   }
   return (
     <button
